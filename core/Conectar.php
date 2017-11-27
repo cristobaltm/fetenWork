@@ -26,16 +26,16 @@ class Conectar {
     }
 
     // Otros métodos para cargar Query Builder, ORMs, etc.
-    
-    public function startFluent() {
-        require_once "FluentPDO/FluentPDO.php";
-
-        if ($this->driver == "mysql" || $this->driver == null) {
-            $pdo = new PDO($this->driver . ":dbname=" . $this->database, $this->user, $this->pass);
-            $fpdo = new FluentPDO($pdo);
-        }
-
-        return $fpdo;
-    }
+//    
+//    public function startFluent() {
+//        require_once "FluentPDO/FluentPDO.php";
+//
+//        if ($this->driver == "mysql" || $this->driver == null) {
+//            $pdo = new PDO($this->driver . ":dbname=" . $this->database, $this->user, $this->pass);
+//            $fpdo = new FluentPDO($pdo);
+//        }
+//
+//        return $fpdo;
+//    }
 
 }

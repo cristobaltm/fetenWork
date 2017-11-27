@@ -9,7 +9,7 @@ class ModeloBase extends EntidadBase {
         $this->table = (string) $table;
         parent::__construct($table);
 
-        $this->fluent = $this->getConetar()->startFluent();
+//        $this->fluent = $this->getConetar()->startFluent();
     }
 
     public function fluent() {

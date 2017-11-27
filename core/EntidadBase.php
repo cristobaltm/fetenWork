@@ -23,6 +23,7 @@ class EntidadBase {
     }
 
     public function getAll() {
+        $resultSet = array();
         $query = $this->db->query("SELECT * FROM {$this->table} ORDER BY id DESC");
 
         //Devolvemos el resultset en forma de array de objetos
