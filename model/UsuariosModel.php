@@ -10,8 +10,8 @@ class UsuariosModel extends ModeloBase {
     }
 
     //Metodos de consulta
-    public function getUnUsuario() {
-        $query = "SELECT * FROM usuarios WHERE email='victor@victor.com'";
+    public function getUnUsuario($email) {
+	$query = "SELECT * FROM usuarios WHERE email='{$email}'";
         $usuario = $this->ejecutarSql($query);
         return $usuario;
     }
