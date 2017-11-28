@@ -17,6 +17,9 @@
         </style>
     </head>
     <body>
+	<div class="col-lg-12">
+	    <h1><?php echo $Hola; ?></h1>
+	</div>
         <form action="<?php echo $helper->url("usuarios", "crear"); ?>" method="post" class="col-lg-5">
             <h3>Añadir usuario</h3>
             <hr/>

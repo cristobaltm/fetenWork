@@ -17,7 +17,7 @@ class UsuariosController extends ControladorBase {
         //Cargamos la vista index y le pasamos valores
         $this->view("index", array(
             "allusers" => $allusers,
-            "Hola" => "Ejemplo MVC-POO"
+            "Hola" => "Ejemplo MVC-POO",
         ));
     }
 
