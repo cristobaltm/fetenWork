@@ -1,6 +1,6 @@
 <?php
 
-class UsuariosModel extends ModeloBase {
+class UsuariosModel extends Model {
 
     private $table;
 

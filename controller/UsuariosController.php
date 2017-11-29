@@ -1,6 +1,6 @@
 <?php
 
-class UsuariosController extends ControladorBase {
+class UsuariosController extends Controller {
 
     public function __construct() {
         parent::__construct();
@@ -52,7 +52,7 @@ class UsuariosController extends ControladorBase {
 
     public function hola() {
         $usuarios = new UsuariosModel();
-        $usu = $usuarios->getUnUsuario("cristobaltm@gmail.com");
+        $usu = $usuarios->getUnUsuario(ADMIN_EMAIL);
         var_dump($usu);
     }
 

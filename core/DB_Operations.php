@@ -1,21 +1,21 @@
 <?php
 
-class EntidadBase {
+class DB_Operations  {
 
     private $table;
     private $db;
-    private $conectar;
+    private $con;
 
     public function __construct($table) {
         $this->table = (string) $table;
 
-        require_once 'Conectar.php';
-        $this->conectar = new Conectar();
-        $this->db = $this->conectar->conexion();
+        require_once 'DB_Connect.php';
+        $this->con = new DB_Connect();
+        $this->db = $this->con->connection();
     }
 
-    public function getConetar() {
-        return $this->conectar;
+    public function getCon() {
+        return $this->con;
     }
 
     public function db() {
@@ -37,14 +37,16 @@ class EntidadBase {
     public function getById($id) {
         $query = $this->db->query("SELECT * FROM {$this->table} WHERE id = {$id}");
 
-        if ($row = $query->fetch_object()) {
-            $resultSet = $row;
+        $row = $query->fetch_object();
+        if ($row) {
+	    return $row;
         }
 
-        return $resultSet;
+	return false;
     }
 
     public function getBy($column, $value) {
+        $resultSet = array();
         $query = $this->db->query("SELECT * FROM {$this->table} WHERE {$column} = '{$value}'");
 
         while ($row = $query->fetch_object()) {

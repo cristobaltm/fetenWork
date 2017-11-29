@@ -1,0 +1,10 @@
+##  Archivo de configuración
+
+# Controlador por defecto
+DEFAULT_CONTROLLER: Usuarios
+    
+# Acción por defecto
+DEFAULT_ACTION: index
+
+# email del administrador
+ADMIN_EMAIL: cristobaltm@gmail.com

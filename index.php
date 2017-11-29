@@ -1,19 +1,18 @@
 <?php
 
-//Configuración global
+// Configuración global
 require_once 'config/global.php';
 
-//Base para los controladores
-require_once 'core/ControladorBase.php';
+// Base para los controladores
+require_once 'core/Controller.php';
 
-//Funciones para el controlador frontal
-require_once 'core/ControladorFrontal.func.php';
+// Cargamos controladores y acciones
+$controller = new Controller();
 
-//Cargamos controladores y acciones
-$controller = filter_input(INPUT_GET, "controller");
-if (!empty($controller)) {
-    $controllerObj = cargarControlador($controller);
+$var_controller = filter_input(INPUT_GET, "controller");
+if (!empty($var_controller)) {
+    $controllerObj = $controller->cargarControlador($var_controller);
 } else {
-    $controllerObj = cargarControlador(CONTROLADOR_DEFECTO);
+    $controllerObj = $controller->cargarControlador(DEFAULT_CONTROLLER);
 }
-lanzarAccion($controllerObj);
+$controller->lanzarAccion($controllerObj);

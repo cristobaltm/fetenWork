@@ -1,8 +1,8 @@
 <?php
 
-class AyudaVistas {
+class View {
 
-    public function url($controlador = CONTROLADOR_DEFECTO, $accion = ACCION_DEFECTO) {
+    public function url($controlador = DEFAULT_CONTROLLER, $accion = DEFAULT_ACTION) {
         $urlString = "index.php?controller={$controlador}&action={$accion}";
         return $urlString;
     }

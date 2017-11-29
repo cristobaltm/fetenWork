@@ -1,6 +1,6 @@
 <?php
 
-class Usuario extends EntidadBase {
+class Usuario extends DB_Operations {
 
     private $id;
     private $nombre;
