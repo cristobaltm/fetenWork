@@ -3,43 +3,50 @@
 class Controller {
 
     public function __construct() {
-        require_once 'DB_Operations.php';
-        require_once 'Model.php';
+	require_once 'DB_Operations.php';
+	require_once 'Model.php';
 
-        //Incluir todos los modelos
-        foreach (glob("model/*.php") as $file) {
-            require_once $file;
-        }
+	//Incluir todos los modelos
+	foreach (glob(PATH_MODEL . "*.php") as $file) {
+	    require_once $file;
+	}
     }
 
     # Plugins y funcionalidades
 
-    /*
-     * Este método lo que hace es recibir los datos del controlador en forma de array
-     * los recorre y crea una variable dinámica con el indice asociativo y le da el 
-     * valor que contiene dicha posición del array, luego carga los helpers para las
-     * vistas y carga la vista que le llega como parámetro. En resumen un método para
-     * renderizar vistas.
+    /**
+     * Este método recibe datos del controlador en forma de array
+     * los recorre y crea una variable dinámica con el indice asociativo
+     * y le da el valor que contiene dicha posición del array,
+     * luego carga los helpers para las vistas y carga la vista
+     * que le llega como parámetro.
+     * @param string $view_name Nombre de la vista
+     * @param array $data Datos del controlador en array
      */
-    public function view($vista, $datos) {
-        foreach ($datos as $id_assoc => $valor) {
-            ${$id_assoc} = $valor;
-        }
+    public function view($view_name, $data) {
+	foreach ($data as $id_assoc => $value) {
+	    ${$id_assoc} = $value;
+	}
 
-        require_once 'core/View.php';
-        $helper = new View();
+	require_once 'core/View.php';
+	$helper = new View();
 
-        require_once "view/{$vista}View.php";
+	require_once "view/{$view_name}View.php";
     }
 
-    public function redirect($controlador = DEFAULT_CONTROLLER, $accion = DEFAULT_ACTION) {
-        header("Location:index.php?controller={$controlador}&action={$accion}");
+    public function redirect($controller = '', $action = '') {
+	if(empty($controller)) {
+	    $controller = DEFAULT_CONTROLLER;
+	}
+	if(empty($action)) {
+	    $action = DEFAULT_ACTION;
+	}
+	header("Location:index.php?controller={$controller}&action={$action}");
     }
 
-    
     # Funciones contenidas en el antiguo ControladorFrontal.func.php
-    
-    public function cargarControlador($controller) {
+
+    public function loadController($controller) {
 	$controlador = ucwords($controller) . 'Controller';
 	$strFileController = "controller/{$controlador}.php";
 
@@ -52,17 +59,18 @@ class Controller {
 	return $controllerObj;
     }
 
-    private function cargarAccion($controllerObj, $action) {
+    private function loadAction($controllerObj, $action) {
 	$accion = $action;
 	$controllerObj->$accion();
     }
 
-    public function lanzarAccion($controllerObj) {
+    public function executeAction($controllerObj) {
 	$action = filter_input(INPUT_GET, "action");
 	if (isset($action) && method_exists($controllerObj, $action)) {
-	    $this->cargarAccion($controllerObj, $action);
+	    $this->loadAction($controllerObj, $action);
 	} else {
-	    $this->cargarAccion($controllerObj, DEFAULT_ACTION);
+	    $this->loadAction($controllerObj, DEFAULT_ACTION);
 	}
     }
+
 }

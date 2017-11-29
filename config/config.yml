@@ -6,5 +6,8 @@ DEFAULT_CONTROLLER: Usuarios
 # Acción por defecto
 DEFAULT_ACTION: index
 
+# Ruta de los modelos
+PATH_MODEL: model/
+
 # email del administrador
 ADMIN_EMAIL: cristobaltm@gmail.com

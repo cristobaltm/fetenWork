@@ -2,11 +2,11 @@
 
 class UsuariosModel extends Model {
 
-    private $table;
 
     public function __construct() {
-        $this->table = "usuarios";
-        parent::__construct($this->table);
+        $table = "usuario";
+        $id_name = "id";
+        parent::__construct($table, $id_name);
     }
 
     //Metodos de consulta

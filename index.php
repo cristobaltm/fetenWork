@@ -10,9 +10,12 @@ require_once 'core/Controller.php';
 $controller = new Controller();
 
 $var_controller = filter_input(INPUT_GET, "controller");
-if (!empty($var_controller)) {
-    $controllerObj = $controller->cargarControlador($var_controller);
+
+if (empty($var_controller)) {
+    $controllerObj = $controller->loadController(DEFAULT_CONTROLLER);
+    
 } else {
-    $controllerObj = $controller->cargarControlador(DEFAULT_CONTROLLER);
+    $controllerObj = $controller->loadController($var_controller);
 }
-$controller->lanzarAccion($controllerObj);
+
+$controller->executeAction($controllerObj);

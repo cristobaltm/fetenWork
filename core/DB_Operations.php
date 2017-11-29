@@ -3,11 +3,13 @@
 class DB_Operations  {
 
     private $table;
+    private $id_name;
     private $db;
     private $con;
 
-    public function __construct($table) {
+    public function __construct($table, $id_name = 'id') {
         $this->table = (string) $table;
+        $this->id_name = (string) $id_name;
 
         require_once 'DB_Connect.php';
         $this->con = new DB_Connect();
@@ -24,7 +26,7 @@ class DB_Operations  {
 
     public function getAll() {
         $resultSet = array();
-        $query = $this->db->query("SELECT * FROM {$this->table} ORDER BY id DESC");
+        $query = $this->db->query("SELECT * FROM {$this->table} ORDER BY {$this->id_name} DESC");
 
         //Devolvemos el resultset en forma de array de objetos
         while ($row = $query->fetch_object()) {
@@ -35,7 +37,7 @@ class DB_Operations  {
     }
 
     public function getById($id) {
-        $query = $this->db->query("SELECT * FROM {$this->table} WHERE id = {$id}");
+        $query = $this->db->query("SELECT * FROM {$this->table} WHERE {$this->id_name} = {$id}");
 
         $row = $query->fetch_object();
         if ($row) {
@@ -57,7 +59,7 @@ class DB_Operations  {
     }
 
     public function deleteById($id) {
-        $query = $this->db->query("DELETE FROM {$this->table} WHERE id = {$id}");
+        $query = $this->db->query("DELETE FROM {$this->table} WHERE {$this->id_name} = {$id}");
         return $query;
     }
 

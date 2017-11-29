@@ -2,9 +2,8 @@
 
 class Model extends DB_Operations {
 
-    public function __construct($table) {
-        $this->table = (string) $table;
-        parent::__construct($table);
+    public function __construct($table, $id_name = 'id') {
+        parent::__construct($table, $id_name);
     }
 
     public function ejecutarSql($query) {

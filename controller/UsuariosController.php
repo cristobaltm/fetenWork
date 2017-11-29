@@ -42,7 +42,7 @@ class UsuariosController extends Controller {
     }
 
     public function borrar() {
-        $id = (int) filter_input(INPUT_POST, "id");
+        $id = (int) filter_input(INPUT_GET, "id");
         if (!empty($id)) {
             $usuario = new Usuario();
             $usuario->deleteById($id);

@@ -10,7 +10,8 @@ class Usuario extends DB_Operations {
 
     public function __construct() {
         $table = "usuarios";
-        parent::__construct($table);
+        $id_name = "id";
+        parent::__construct($table, $id_name);
     }
 
     function getId() {
