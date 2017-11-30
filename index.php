@@ -1,7 +1,7 @@
 <?php
 
 // Configuración global
-require_once 'config/global.php';
+require_once 'core/global.php';
 
 // Base para los controladores
 require_once 'core/Controller.php';

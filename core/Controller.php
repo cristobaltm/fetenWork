@@ -3,11 +3,11 @@
 class Controller {
 
     public function __construct() {
-	require_once 'DB_Operations.php';
+	require_once 'DBConnection.php';
 	require_once 'Model.php';
 
 	//Incluir todos los modelos
-	foreach (glob(PATH_MODEL . "*.php") as $file) {
+	foreach (glob(PATH_MODELS . "*.php") as $file) {
 	    require_once $file;
 	}
     }
@@ -31,43 +31,45 @@ class Controller {
 	require_once 'core/View.php';
 	$helper = new View();
 
-	require_once "view/{$view_name}View.php";
+	require_once PATH_VIEWS . $view_name . "View.php";
     }
 
     public function redirect($controller = '', $action = '') {
-	if(empty($controller)) {
+	if (empty($controller)) {
 	    $controller = DEFAULT_CONTROLLER;
 	}
-	if(empty($action)) {
+	if (empty($action)) {
 	    $action = DEFAULT_ACTION;
 	}
+
 	header("Location:index.php?controller={$controller}&action={$action}");
     }
 
     # Funciones contenidas en el antiguo ControladorFrontal.func.php
 
-    public function loadController($controller) {
-	$controlador = ucwords($controller) . 'Controller';
-	$strFileController = "controller/{$controlador}.php";
+    public function loadController($controller_name) {
+	$controller = ucwords($controller_name) . 'Controller';
+	$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
 	if (!is_file($strFileController)) {
-	    $strFileController = 'controller/' . ucwords(DEFAULT_CONTROLLER) . 'Controller.php';
+	    $strFileController = PATH_CONTROLLERS . ucwords(DEFAULT_CONTROLLER) . 'Controller.php';
 	}
 
 	require_once $strFileController;
-	$controllerObj = new $controlador();
+	$controllerObj = new $controller();
 	return $controllerObj;
     }
 
     private function loadAction($controllerObj, $action) {
-	$accion = $action;
-	$controllerObj->$accion();
+	$controllerObj->$action();
     }
 
     public function executeAction($controllerObj) {
 	$action = filter_input(INPUT_GET, "action");
+	
 	if (isset($action) && method_exists($controllerObj, $action)) {
 	    $this->loadAction($controllerObj, $action);
+		    
 	} else {
 	    $this->loadAction($controllerObj, DEFAULT_ACTION);
 	}

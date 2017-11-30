@@ -1,6 +1,6 @@
 <?php
 
-class Usuario extends DB_Operations {
+class Usuario extends DBConnection {
 
     private $id;
     private $nombre;

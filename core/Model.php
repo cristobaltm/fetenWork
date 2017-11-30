@@ -1,30 +1,33 @@
 <?php
 
-class Model extends DB_Operations {
+class Model extends DBConnection {
 
     public function __construct($table, $id_name = 'id') {
         parent::__construct($table, $id_name);
     }
 
-    public function ejecutarSql($query) {
+    public function executeQuery($query) {
         $my_query = $this->db()->query($query);
-        if ($my_query == true) {
-            if ($my_query->num_rows > 1) {
-                while ($row = $my_query->fetch_object()) {
-                    $resultSet[] = $row;
-                }
-            } elseif ($my_query->num_rows == 1) {
-                if ($row = $my_query->fetch_object()) {
-                    $resultSet = $row;
-                }
-            } else {
-                $resultSet = true;
-            }
-        } else {
-            $resultSet = false;
-        }
+	
+        if ($my_query === false) {
+	    return false;
+	}
+	
+	if ($my_query->num_rows > 1) {
+	    $resultSet = array();
+	    while ($row = $my_query->fetch_object()) {
+		$resultSet[] = $row;
+	    }
+	    return $resultSet;
+	    
+	} elseif ($my_query->num_rows == 1) {
+	    $row = $my_query->fetch_object();
+	    if ($row !== false) {
+		return $row;
+	    }
+	}
 
-        return $resultSet;
+        return true;
     }
 
     //Aqui podemos montarnos métodos para los modelos de consulta

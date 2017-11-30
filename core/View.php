@@ -2,8 +2,15 @@
 
 class View {
 
-    public function url($controlador = DEFAULT_CONTROLLER, $accion = DEFAULT_ACTION) {
-        $urlString = "index.php?controller={$controlador}&action={$accion}";
+    public function url($controller = '', $action = '') {	
+	if (empty($controller)) {
+	    $controller = DEFAULT_CONTROLLER;
+	}	
+	if (empty($action)) {
+	    $action = DEFAULT_ACTION;
+	}
+        
+	$urlString = "index.php?controller={$controller}&action={$action}";
         return $urlString;
     }
 

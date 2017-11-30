@@ -7,7 +7,14 @@ DEFAULT_CONTROLLER: Usuarios
 DEFAULT_ACTION: index
 
 # Ruta de los modelos
-PATH_MODEL: model/
+PATH_MODELS: model/
+
+# Ruta de las vistas
+PATH_VIEWS: view/
+
+# Ruta de los controladores
+PATH_CONTROLLERS: controller/
 
 # email del administrador
-ADMIN_EMAIL: cristobaltm@gmail.com
+# ADMIN_EMAIL: cristobaltm@gmail.com
+ADMIN_EMAIL: ctorres@oesia.com
