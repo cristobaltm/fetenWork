@@ -1,18 +1,40 @@
 <?php
 
 class Controller {
+    
+    # Atributos
 
+    private $controller = null;
+    private $view = null;
+    protected $model = null;
+
+    # Constructor y destructor
+
+    /**
+     *  Controlador base
+     */
     public function __construct() {
-	require_once 'DBConnection.php';
+	// Incluir el Modelo base
 	require_once 'Model.php';
+	// Incluir la vista Base
+	require_once 'View.php';
 
-	//Incluir todos los modelos
-	foreach (glob(PATH_MODELS . "*.php") as $file) {
-	    require_once $file;
-	}
+	// Carga el objeto View
+	$this->view = new View();
     }
 
-    # Plugins y funcionalidades
+    function __destruct() {
+	
+    }
+
+    # Setters
+    
+    protected function setModel($model) {
+	$this->model = $model;
+    }
+
+        
+    # Métodos
 
     /**
      * Este método recibe datos del controlador en forma de array
@@ -28,51 +50,55 @@ class Controller {
 	    ${$id_assoc} = $value;
 	}
 
-	require_once 'core/View.php';
-	$helper = new View();
+	$helper = $this->view;
 
 	require_once PATH_VIEWS . $view_name . "View.php";
     }
 
+    /**
+     * Redirige a la página correspondiente, pasando los parámetros requeridos
+     * @param string $controller Controlador
+     * @param string $action Acción 
+     */
     public function redirect($controller = '', $action = '') {
-	if (empty($controller)) {
-	    $controller = DEFAULT_CONTROLLER;
-	}
-	if (empty($action)) {
-	    $action = DEFAULT_ACTION;
-	}
-
-	header("Location:index.php?controller={$controller}&action={$action}");
+	$url = $this->view->url($controller, $action);
+	header("Location:{$url}");
     }
 
-    # Funciones contenidas en el antiguo ControladorFrontal.func.php
-
+    /**
+     * Carga el controlador 
+     * @param string $controller_name Nombre del controlador
+     */
     public function loadController($controller_name) {
+	// Define el controlador y la ruta del fichero
 	$controller = ucwords($controller_name) . 'Controller';
 	$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
+	// Si no existe el fichero, carga el controlador por defecto
 	if (!is_file($strFileController)) {
-	    $strFileController = PATH_CONTROLLERS . ucwords(DEFAULT_CONTROLLER) . 'Controller.php';
+	    $controller = DEFAULT_CONTROLLER . 'Controller';
+	    $strFileController = PATH_CONTROLLERS . $controller . ".php";
 	}
 
+	// Incluye el fichero y carga el controlador
 	require_once $strFileController;
-	$controllerObj = new $controller();
-	return $controllerObj;
+	$this->controller = new $controller();
     }
 
-    private function loadAction($controllerObj, $action) {
-	$controllerObj->$action();
-    }
-
-    public function executeAction($controllerObj) {
-	$action = filter_input(INPUT_GET, "action");
-	
-	if (isset($action) && method_exists($controllerObj, $action)) {
-	    $this->loadAction($controllerObj, $action);
-		    
-	} else {
-	    $this->loadAction($controllerObj, DEFAULT_ACTION);
+    /**
+     * Ejecuta la acción correspondiente del controlador
+     * @param string $action Nombre de la acción
+     * @return bool resultado de la acción
+     */
+    public function executeAction($action) {
+	// Si no existe el método dentro del controlador,
+	// ejecuta la acción por defecto
+	if (!method_exists($this->controller, $action)) {
+	    $action = DEFAULT_ACTION;
 	}
+
+	// Ejecuta la acción
+	return $this->controller->$action();
     }
 
 }

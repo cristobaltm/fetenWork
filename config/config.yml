@@ -1,10 +1,38 @@
-##  Archivo de configuración
+#############################
+## CONFIGURACIÓN DEL SITIO ##
+#############################
+
+# Título del sitio
+TITLE_SITE: Ejemplo PHP MySQLi POO MVC
+
+# email del administrador
+# ADMIN_EMAIL: cristobaltm@gmail.com
+ADMIN_EMAIL: ctorres@oesia.com
+
+
+#########################
+## VALORES POR DEFECTO ##
+#########################
 
 # Controlador por defecto
 DEFAULT_CONTROLLER: Usuarios
-    
+
 # Acción por defecto
 DEFAULT_ACTION: index
+
+# Vista por defecto
+DEFAULT_VIEW: Template
+
+# Nombre de la variable GET que define el controlador
+GET_CONTROLLER: controller
+
+# Nombre de la variable GET que define la acción
+GET_ACTION: action
+
+
+###########
+## RUTAS ##
+###########
 
 # Ruta de los modelos
 PATH_MODELS: model/
@@ -15,6 +43,6 @@ PATH_VIEWS: view/
 # Ruta de los controladores
 PATH_CONTROLLERS: controller/
 
-# email del administrador
-# ADMIN_EMAIL: cristobaltm@gmail.com
-ADMIN_EMAIL: ctorres@oesia.com
+# Ruta de los archivos web
+PATH_WEB: web/
+

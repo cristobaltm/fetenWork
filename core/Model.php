@@ -1,34 +1,59 @@
 <?php
 
+// Incluir la clase de conexión a Base de Datos
+require_once 'DBConnection.php';
+
 class Model extends DBConnection {
 
+    # Constructor y destructor
+
+    /**
+     * Modelo base
+     * @param string $table Nombre de la tabla 
+     * @param string $id_name Nombre del identificador de la tabla
+     */
     public function __construct($table, $id_name = 'id') {
-        parent::__construct($table, $id_name);
+	parent::__construct($table, $id_name);
+	
     }
 
-    public function executeQuery($query) {
-        $my_query = $this->db()->query($query);
+    function __destruct() {
 	
-        if ($my_query === false) {
+    }
+
+    # Métodos
+
+    /**
+     * Ejecuta una consulta
+     * @param string $query Consulta
+     * @return mixed Resultado de la consulta o false
+     */
+    public function executeQuery($query) {
+	// Ejecuta la consulta y recupera el resultado
+	$query_result = $this->db()->query($query);
+
+	// Si el resultado es false, devuelve false
+	if ($query_result === false) {
 	    return false;
 	}
-	
-	if ($my_query->num_rows > 1) {
+
+	// Si la consulta devuelve mas de un resultado devuelve un array
+	if ($query_result->num_rows > 1) {
 	    $resultSet = array();
-	    while ($row = $my_query->fetch_object()) {
+	    while ($row = $query_result->fetch_object()) {
 		$resultSet[] = $row;
 	    }
 	    return $resultSet;
 	    
-	} elseif ($my_query->num_rows == 1) {
-	    $row = $my_query->fetch_object();
+	// Si la consulta devuelve un resultado devuelve el registro
+	} elseif ($query_result->num_rows == 1) {
+	    $row = $query_result->fetch_object();
 	    if ($row !== false) {
 		return $row;
 	    }
 	}
 
-        return true;
+	return $query_result;
     }
 
-    //Aqui podemos montarnos métodos para los modelos de consulta
 }
