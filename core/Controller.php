@@ -5,7 +5,7 @@ class Controller {
     # Atributos
 
     private $controller = null;
-    private $view = null;
+    protected $view = null;
     protected $model = null;
 
     # Constructor y destructor
@@ -14,35 +14,27 @@ class Controller {
      *  Controlador base
      */
     public function __construct() {
+	// Incluir la clase de conexión a Base de Datos
+	require_once 'DBConnection.php';
 	// Incluir el Modelo base
 	require_once 'Model.php';
 	// Incluir la vista Base
 	require_once 'View.php';
-
-	// Carga el objeto View
-	$this->view = new View();
     }
 
     function __destruct() {
 	
     }
 
-    # Setters
-    
-    protected function setModel($model) {
-	$this->model = $model;
-    }
-
-        
     # Métodos
 
     /**
-     * Carga el controlador 
-     * @param string $controller_name Nombre del controlador
+     * Carga el controlador y su correspondiente modelo y vista
+     * @param string $name Nombre del controlador, vista y modelo
      */
-    public function loadController($controller_name) {
+    private function loadController($name) {
 	// Define el controlador y la ruta del fichero
-	$controller = ucwords($controller_name) . 'Controller';
+	$controller = ucwords($name) . 'Controller';
 	$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
 	// Si no existe el fichero, carga el controlador por defecto
@@ -57,11 +49,61 @@ class Controller {
     }
 
     /**
+     * Carga el modelo
+     * @param string $name Nombre modelo
+     */
+    protected function loadModel($name) {
+	// Define el modelo y la ruta del fichero
+	$model = ucwords($name) . 'Model';
+	$strFileModel = PATH_MODELS . $model . ".php";
+
+	// Si no existe el fichero, carga el modelo por defecto
+	if (!is_file($strFileModel)) {
+	    $model = DEFAULT_MODEL . 'Model';
+	    $strFileModel = PATH_MODEL . $model . ".php";
+	}
+
+	// Incluye el fichero y carga el modelo
+	require_once $strFileModel;
+	$this->model = new $model();
+    }
+
+    /**
+     * Carga la vista
+     * @param string $name Nombre de la vista
+     */
+    protected function loadView($name) {
+	// Define la vista y la ruta del fichero
+	$view = ucwords($name) . 'View';
+	$strFileView = PATH_VIEWS . $view . ".php";
+
+	// Si no existe el fichero, carga la vista por defecto
+	if (!is_file($strFileView)) {
+	    $view = DEFAULT_VIEW . 'View';
+	    $strFileView = PATH_VIEWS . $view . ".php";
+	}
+
+	// Incluye el fichero y carga la vista
+	require_once $strFileView;
+	$this->view = new $view();
+    }
+
+    /**
+     * Carga el controlador, el modelo y la vista con el nombre pasado
+     * @param string $name Nombre del controlador, vista y modelo
+     */
+    public function load($name) {
+	$this->loadController($name);
+//	$this->loadModel($name);
+//	$this->loadView($name);
+    }
+
+    /**
      * Ejecuta la acción correspondiente del controlador
      * @param string $action Nombre de la acción
      * @return bool resultado de la acción
      */
-    public function executeAction($action) {
+    public function execute($action) {
 	// Si no existe el método dentro del controlador,
 	// ejecuta la acción por defecto
 	if (!method_exists($this->controller, $action)) {
@@ -78,24 +120,11 @@ class Controller {
      * y le da el valor que contiene dicha posición del array,
      * luego carga los helpers para las vistas y carga la vista
      * que le llega como parámetro.
-     * @param string $view_name Nombre de la vista
      * @param array $data Datos del controlador en array
      */
-    public function view($view_name, $data = array()) {
-	// Define la vista y la ruta del fichero
-	$view = ucwords($view_name) . 'View';
-	$strFileView = PATH_VIEWS . $view . ".php";
-
-	// Si no existe el fichero, carga la vista por defecto
-	if (!is_file($strFileView)) {
-	    $view = DEFAULT_VIEW . 'View';
-	    $strFileView = PATH_VIEWS . $view . ".php";
-	}
-	
-	require_once $strFileView;
-	$this->view = new $view();
-	$this->view->mergeReplace($data);
-	$this->view->write();	
+    public function view($data = array()) {
+	$this->view->setReplace($data);
+	$this->view->write();
     }
 
     /**

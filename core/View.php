@@ -10,6 +10,12 @@ class View {
     # Constructor y destructor
 
     public function __construct() {
+	$this->replace = array(
+	    'title_site' => TITLE_SITE,	    
+	    'path_web' => PATH_WEB,
+	    'author' => AUTHOR,
+	    'author_web' => AUTHOR_WEB
+	);
 	
     }
 
@@ -29,19 +35,16 @@ class View {
 	}
     }
 
-    function setReplace($replace) {
-	$this->replace = $replace;
-    }
-
-    # Métodos
 
     /**
      * Agrega más filas al array de reemplazo
      * @param array $replace Array con las nuevas filas
      */
-    public function mergeReplace($replace) {
+    function setReplace($replace) {
 	$this->replace = array_merge($this->replace, $replace);
     }
+
+    # Métodos
 
     /**
      * Construye una URL válida con el controlador y la acción requeridas

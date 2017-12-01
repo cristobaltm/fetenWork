@@ -1,6 +1,6 @@
 <?php
 
-class Template extends View {
+class TemplateView extends View {
     
     # Constructor y destructor
 

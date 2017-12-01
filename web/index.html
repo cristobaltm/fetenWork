@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8"/>
         <title>@@title_site@@</title>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link href="@@path_web@@/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="@@path_web@@/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="@@path_web@@/js/jquery.min.js"></script>
         <style>
             input{
                 margin-top:5px;
@@ -20,9 +20,9 @@
 	<div class="col-lg-12">
 	    <h1>@@header@@</h1>
 	</div>
-        <form action="@@form_action@@" method="post" class="col-lg-5">
-            <h3>Añadir usuario</h3>
-            <hr/>
+        <form action="@@form_action@@" method="post" class="col-lg-3">
+            <h3><span class="glyphicon glyphicon-user"></span> Añadir usuario</h3>
+             <hr/>
             Nombre: <input type="text" name="nombre" class="form-control"/>
             Apellido: <input type="text" name="apellido" class="form-control"/>
             Email: <input type="text" name="email" class="form-control"/>
@@ -30,16 +30,16 @@
             <input type="submit" value="enviar" class="btn btn-success"/>
         </form>
 
-        <div class="col-lg-7">
-            <h3>Usuarios</h3>
+        <div class="col-lg-9">
+            <h3><span class="glyphicon glyphicon-eye-open"></span> Usuarios</h3>
             <hr/>
         </div>
-        <section class="col-lg-7 usuario" style="height:400px;overflow-y:scroll;">
+        <section class="col-lg-9 usuario" style="height:400px;overflow-y:scroll;">
 @@users_table@@
         </section>
         <footer class="col-lg-12">
             <hr/>
-            @@title_site@@ - <a href="https://github.com/cristobaltm/mvc" target="_blank">CristobalTM</a> - Copyright &copy; @@year@@
+            @@title_site@@ - <a href="@@author_web@@" target="_blank">@@author@@</a> &copy; @@year@@
         </footer>
     </body>
 </html>

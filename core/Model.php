@@ -1,8 +1,5 @@
 <?php
 
-// Incluir la clase de conexión a Base de Datos
-require_once 'DBConnection.php';
-
 class Model extends DBConnection {
 
     # Constructor y destructor

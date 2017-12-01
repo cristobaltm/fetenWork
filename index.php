@@ -12,5 +12,5 @@ $var_action = filter_input(INPUT_GET, GET_ACTION);
 
 // Cargamos controladores y acciones
 $controller = new Controller();
-$controller->loadController($var_controller);
-$controller->executeAction($var_action);
+$controller->load($var_controller);
+$controller->execute($var_action);

@@ -70,5 +70,4 @@ VALUES(NULL, '{$this->nombre}', '{$this->apellido}', '{$this->email}', '{$this->
         $usuario = $this->executeQuery($query);
         return $usuario;
     }
-
 }

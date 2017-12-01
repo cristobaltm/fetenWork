@@ -6,8 +6,13 @@
 TITLE_SITE: Ejemplo PHP MySQLi POO MVC
 
 # email del administrador
-# ADMIN_EMAIL: cristobaltm@gmail.com
-ADMIN_EMAIL: ctorres@oesia.com
+ADMIN_EMAIL: cristobaltm@gmail.com
+
+# Autor
+AUTHOR: Cristobal TM
+
+# Web del autor
+AUTHOR_WEB: https://github.com/cristobaltm/mvc
 
 
 #########################

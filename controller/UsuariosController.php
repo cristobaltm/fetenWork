@@ -4,27 +4,18 @@ class UsuariosController extends Controller {
 
     public function __construct() {
         parent::__construct();
-	
-	// Cargar el modelo
-	require_once PATH_MODELS . 'UsuariosModel.php';
-	$model	= new UsuariosModel();
-        parent::setModel($model);
+	$name = "Usuarios";
+        parent::loadModel($name);
+        parent::loadView($name);
     }
 
     public function index() {	
-
         //Conseguimos todos los usuarios
         $allusers = $this->model->getAll();
-        $allusersHTML = "<hr>";
-	foreach($allusers as $obj) {
-	    foreach($obj as $k => $v) {
-		$allusersHTML .= "[{$k}] {$v}<br>";
-	    }
-	    $allusersHTML .= "<hr>";
-	}
+	$allusersHTML = $this->view->userTable($allusers);
 
         //Cargamos la vista index y le pasamos valores
-        $this->view("index", array(
+        $this->view(array(
             "users_table" => $allusersHTML,
             'Hola' => 'Ejemplo microFramework MVC-POO',
             'header' => 'Ejemplo microFramework MVC-POO',
