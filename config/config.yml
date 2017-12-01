@@ -23,6 +23,9 @@ DEFAULT_ACTION: index
 # Vista por defecto
 DEFAULT_VIEW: Template
 
+# Plantilla por defecto
+DEFAULT_TEMPLATE: index
+
 # Nombre de la variable GET que define el controlador
 GET_CONTROLLER: controller
 

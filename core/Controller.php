@@ -37,35 +37,6 @@ class Controller {
     # Métodos
 
     /**
-     * Este método recibe datos del controlador en forma de array
-     * los recorre y crea una variable dinámica con el indice asociativo
-     * y le da el valor que contiene dicha posición del array,
-     * luego carga los helpers para las vistas y carga la vista
-     * que le llega como parámetro.
-     * @param string $view_name Nombre de la vista
-     * @param array $data Datos del controlador en array
-     */
-    public function view($view_name, $data) {
-	foreach ($data as $id_assoc => $value) {
-	    ${$id_assoc} = $value;
-	}
-
-	$helper = $this->view;
-
-	require_once PATH_VIEWS . $view_name . "View.php";
-    }
-
-    /**
-     * Redirige a la página correspondiente, pasando los parámetros requeridos
-     * @param string $controller Controlador
-     * @param string $action Acción 
-     */
-    public function redirect($controller = '', $action = '') {
-	$url = $this->view->url($controller, $action);
-	header("Location:{$url}");
-    }
-
-    /**
      * Carga el controlador 
      * @param string $controller_name Nombre del controlador
      */
@@ -99,6 +70,42 @@ class Controller {
 
 	// Ejecuta la acción
 	return $this->controller->$action();
+    }
+
+    /**
+     * Este método recibe datos del controlador en forma de array
+     * los recorre y crea una variable dinámica con el indice asociativo
+     * y le da el valor que contiene dicha posición del array,
+     * luego carga los helpers para las vistas y carga la vista
+     * que le llega como parámetro.
+     * @param string $view_name Nombre de la vista
+     * @param array $data Datos del controlador en array
+     */
+    public function view($view_name, $data = array()) {
+	// Define la vista y la ruta del fichero
+	$view = ucwords($view_name) . 'View';
+	$strFileView = PATH_VIEWS . $view . ".php";
+
+	// Si no existe el fichero, carga la vista por defecto
+	if (!is_file($strFileView)) {
+	    $view = DEFAULT_VIEW . 'View';
+	    $strFileView = PATH_VIEWS . $view . ".php";
+	}
+	
+	require_once $strFileView;
+	$this->view = new $view();
+	$this->view->mergeReplace($data);
+	$this->view->write();	
+    }
+
+    /**
+     * Redirige a la página correspondiente, pasando los parámetros requeridos
+     * @param string $controller Controlador
+     * @param string $action Acción 
+     */
+    public function redirect($controller = '', $action = '') {
+	$url = $this->view->url($controller, $action);
+	header("Location:{$url}");
     }
 
 }

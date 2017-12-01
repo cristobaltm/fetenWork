@@ -15,10 +15,17 @@ class UsuariosController extends Controller {
 
         //Conseguimos todos los usuarios
         $allusers = $this->model->getAll();
+        $allusersHTML = "<hr>";
+	foreach($allusers as $obj) {
+	    foreach($obj as $k => $v) {
+		$allusersHTML .= "[{$k}] {$v}<br>";
+	    }
+	    $allusersHTML .= "<hr>";
+	}
 
         //Cargamos la vista index y le pasamos valores
         $this->view("index", array(
-            "allusers" => $allusers,
+            "users_table" => $allusersHTML,
             'Hola' => 'Ejemplo microFramework MVC-POO',
             'header' => 'Ejemplo microFramework MVC-POO',
         ));

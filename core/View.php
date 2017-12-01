@@ -20,7 +20,13 @@ class View {
     # Setters
 
     function setHtml_template($html_template) {
-	$this->html_template = $html_template;
+	// Define el fichero con la plantilla,
+	$this->html_template  = PATH_WEB . $html_template . ".html";
+	
+	// y si no existe, la plantilla por defecto
+	if (!is_file($this->html_template)) {
+	    $this->html_template = PATH_WEB . DEFAULT_TEMPLATE . ".html";
+	}
     }
 
     function setReplace($replace) {
@@ -34,7 +40,7 @@ class View {
      * @param array $replace Array con las nuevas filas
      */
     public function mergeReplace($replace) {
-	return array_merge($this->replace, $replace);
+	$this->replace = array_merge($this->replace, $replace);
     }
 
     /**
@@ -62,10 +68,29 @@ class View {
 	return $url;
     }
 
-    public function render() {
+    private function render() {
+	$replace = array();
+	foreach($this->replace as $pattern => $value) {
+	    $replace["/@@{$pattern}@@/"] = (string) $value;
+	}
+
 	$html = preg_replace(
-		array_keys($this->replace), array_values($this->replace), $this->html_template
+		array_keys($replace),
+		array_values($replace),
+		file_get_contents($this->html_template)
 	);
+	
+	return $html;
+    }
+
+    public function write($write = true) {
+	$html = $this->render();
+	
+	if($write) {
+	    echo $html;
+	    return true;
+	}
+	
 	return $html;
     }
 
