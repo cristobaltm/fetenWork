@@ -1,140 +1,136 @@
 <?php
 
 class Controller {
-    
-    # Atributos
 
-    private $controller = null;
-    protected $view = null;
-    protected $model = null;
+	# Atributos
 
-    # Constructor y destructor
+	private $controller = null;
+	protected $view = null;
+	protected $model = null;
 
-    /**
-     *  Controlador base
-     */
-    public function __construct() {
-	// Incluir la clase de conexión a Base de Datos
-	require_once 'DBConnection.php';
-	// Incluir el Modelo base
-	require_once 'Model.php';
-	// Incluir la vista Base
-	require_once 'View.php';
-    }
+	# Constructor y destructor
 
-    function __destruct() {
-	
-    }
-
-    # Métodos
-
-    /**
-     * Carga el controlador y su correspondiente modelo y vista
-     * @param string $name Nombre del controlador, vista y modelo
-     */
-    private function loadController($name) {
-	// Define el controlador y la ruta del fichero
-	$controller = ucwords($name) . 'Controller';
-	$strFileController = PATH_CONTROLLERS . $controller . ".php";
-
-	// Si no existe el fichero, carga el controlador por defecto
-	if (!is_file($strFileController)) {
-	    $controller = DEFAULT_CONTROLLER . 'Controller';
-	    $strFileController = PATH_CONTROLLERS . $controller . ".php";
+	/**
+	 *  Controlador base
+	 */
+	public function __construct() {
+		// Incluir la clase de conexión a Base de Datos
+		require_once 'DBConnection.php';
+		// Incluir el Modelo base
+		require_once 'Model.php';
+		// Incluir la vista Base
+		require_once 'View.php';
 	}
 
-	// Incluye el fichero y carga el controlador
-	require_once $strFileController;
-	$this->controller = new $controller();
-    }
-
-    /**
-     * Carga el modelo
-     * @param string $name Nombre modelo
-     */
-    protected function loadModel($name) {
-	// Define el modelo y la ruta del fichero
-	$model = ucwords($name) . 'Model';
-	$strFileModel = PATH_MODELS . $model . ".php";
-
-	// Si no existe el fichero, carga el modelo por defecto
-	if (!is_file($strFileModel)) {
-	    $model = DEFAULT_MODEL . 'Model';
-	    $strFileModel = PATH_MODEL . $model . ".php";
+	function __destruct() {
+		
 	}
 
-	// Incluye el fichero y carga el modelo
-	require_once $strFileModel;
-	$this->model = new $model();
-    }
+	# Métodos
 
-    /**
-     * Carga la vista
-     * @param string $name Nombre de la vista
-     */
-    protected function loadView($name) {
-	// Define la vista y la ruta del fichero
-	$view = ucwords($name) . 'View';
-	$strFileView = PATH_VIEWS . $view . ".php";
+	/**
+	 * Carga el controlador, y si no existe carga el de por defecto
+	 * @param string $name Nombre del controlador
+	 */
+	private function loadController($name) {
+		// Define el controlador y la ruta del fichero
+		$controller = ucwords($name) . 'Controller';
+		$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
-	// Si no existe el fichero, carga la vista por defecto
-	if (!is_file($strFileView)) {
-	    $view = DEFAULT_VIEW . 'View';
-	    $strFileView = PATH_VIEWS . $view . ".php";
+		// Si no existe el fichero, carga el controlador por defecto
+		if (!is_file($strFileController)) {
+			$controller = DEFAULT_CONTROLLER . 'Controller';
+			$strFileController = PATH_CONTROLLERS . $controller . ".php";
+		}
+
+		// Incluye el fichero y carga el controlador
+		require_once $strFileController;
+		$this->controller = new $controller();
 	}
 
-	// Incluye el fichero y carga la vista
-	require_once $strFileView;
-	$this->view = new $view();
-    }
+	/**
+	 * Carga el modelo, y si no existe carga el de por defecto
+	 * @param string $name Nombre modelo
+	 */
+	protected function loadModel($name) {
+		// Define el modelo y la ruta del fichero
+		$model = ucwords($name) . 'Model';
+		$strFileModel = PATH_MODELS . $model . ".php";
 
-    /**
-     * Carga el controlador, el modelo y la vista con el nombre pasado
-     * @param string $name Nombre del controlador, vista y modelo
-     */
-    public function load($name) {
-	$this->loadController($name);
-//	$this->loadModel($name);
-//	$this->loadView($name);
-    }
+		// Si no existe el fichero, carga el modelo por defecto
+		if (!is_file($strFileModel)) {
+			$model = DEFAULT_CONTROLLER . 'Model';
+			$strFileModel = PATH_MODEL . $model . ".php";
+		}
 
-    /**
-     * Ejecuta la acción correspondiente del controlador
-     * @param string $action Nombre de la acción
-     * @return bool resultado de la acción
-     */
-    public function execute($action) {
-	// Si no existe el método dentro del controlador,
-	// ejecuta la acción por defecto
-	if (!method_exists($this->controller, $action)) {
-	    $action = DEFAULT_ACTION;
+		// Incluye el fichero y carga el modelo
+		require_once $strFileModel;
+		$this->model = new $model();
 	}
 
-	// Ejecuta la acción
-	return $this->controller->$action();
-    }
+	/**
+	 * Carga la vista, y si no existe carga la de por defecto
+	 * @param string $name Nombre de la vista
+	 */
+	protected function loadView($name) {
+		// Define la vista y la ruta del fichero
+		$view = ucwords($name) . 'View';
+		$strFileView = PATH_VIEWS . $view . ".php";
 
-    /**
-     * Este método recibe datos del controlador en forma de array
-     * los recorre y crea una variable dinámica con el indice asociativo
-     * y le da el valor que contiene dicha posición del array,
-     * luego carga los helpers para las vistas y carga la vista
-     * que le llega como parámetro.
-     * @param array $data Datos del controlador en array
-     */
-    public function view($data = array()) {
-	$this->view->setReplace($data);
-	$this->view->write();
-    }
+		// Si no existe el fichero, carga la vista por defecto
+		if (!is_file($strFileView)) {
+			$view = DEFAULT_CONTROLLER . 'View';
+			$strFileView = PATH_VIEWS . $view . ".php";
+		}
 
-    /**
-     * Redirige a la página correspondiente, pasando los parámetros requeridos
-     * @param string $controller Controlador
-     * @param string $action Acción 
-     */
-    public function redirect($controller = '', $action = '') {
-	$url = $this->view->url($controller, $action);
-	header("Location:{$url}");
-    }
+		// Incluye el fichero y carga la vista
+		require_once $strFileView;
+		$this->view = new $view();
+	}
+
+	/**
+	 * Carga el controlador llamando al método loadController
+	 * @param string $name Nombre del controlador
+	 */
+	public function load($name) {
+		$this->loadController($name);
+	}
+
+	/**
+	 * Ejecuta la acción correspondiente del controlador
+	 * @param string $action Nombre de la acción
+	 * @return bool resultado de la acción
+	 */
+	public function execute($action) {
+		// Si no existe el método dentro del controlador,
+		// ejecuta la acción por defecto
+		if (!method_exists($this->controller, $action)) {
+			$action = DEFAULT_ACTION;
+		}
+
+		// Ejecuta la acción
+		return $this->controller->$action();
+	}
+
+	/**
+	 * Recibe datos a reemplazar en forma de array y muestra la vista
+	 * @param array $data Datos del controlador en array
+	 */
+	public function view($data = array()) {
+		if (!empty($this->view)) {
+			$this->view->setReplace($data);
+			$this->view->write();
+		}
+	}
+
+	/**
+	 * Redirige a la página correspondiente, pasando los parámetros requeridos
+	 * @param string $controller Controlador
+	 * @param string $action Acción 
+	 */
+	public function redirect($controller = '', $action = '') {
+		$url = $this->view->url($controller, $action);
+		header("Location:{$url}");
+	}
 
 }

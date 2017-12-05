@@ -9,7 +9,7 @@ TITLE_SITE: Ejemplo PHP MySQLi POO MVC
 ADMIN_EMAIL: cristobaltm@gmail.com
 
 # Autor
-AUTHOR: Cristobal TM
+AUTHOR_NAME: Cristobal TM
 
 # Web del autor
 AUTHOR_WEB: https://github.com/cristobaltm/mvc
@@ -20,16 +20,17 @@ AUTHOR_WEB: https://github.com/cristobaltm/mvc
 #########################
 
 # Controlador por defecto
+# (también será el nombre por defecto para modelo y vista)
 DEFAULT_CONTROLLER: Usuarios
 
 # Acción por defecto
 DEFAULT_ACTION: index
 
-# Vista por defecto
-DEFAULT_VIEW: Template
-
 # Plantilla por defecto
 DEFAULT_TEMPLATE: index
+
+# Entorno por defecto
+DEFAULT_ENVIRONMENT: dev
 
 # Nombre de la variable GET que define el controlador
 GET_CONTROLLER: controller
