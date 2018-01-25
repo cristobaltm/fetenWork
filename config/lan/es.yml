@@ -1,0 +1,68 @@
+# Etiquetas genéricas del sitio
+
+title_site: fetenWork
+group_name: CristobalTM
+team_name: microFrameWork PHP + POO + MVC
+
+# Menú
+
+menu: Menú
+index: Inicio
+users: Usuarios
+urls: Enlaces
+others_webs: Otras webs
+github: Github
+mvc_site: Ejemplo PHP + POO + MVC
+
+# Mensajes
+
+error_wrong_page: La página que solicita no existe
+confirm_delete: ¿Deseas eliminar este registro?
+
+# Acciones
+
+send: Enviar
+delete: Borrar
+edit: Editar
+close: Cerrar
+go_up: Subir
+
+# Sección usuarios
+
+name: Nombre
+surname: Apellido
+email: Email
+pass: Contraseña
+add_user: Añadir usuario
+
+# Sección enlaces
+
+label: Etiqueta
+link: Dirección
+add_link: Añadir enlace
+edit_link: Editar enlace
+
+# Política de cookies
+
+cookie_polity: Esta web utiliza cookies para ofrecer una mejor experiencia de usuario. Si continúas navegando consideramos que aceptas su uso.
+more_information: Más información
+
+# Ejemplo portada
+
+section_title: Ejemplo de portada
+link_1: Enlace 1
+link_2: Enlace 2
+link_3: Enlace 3
+section_1: Sección 1
+section_2: Sección 2
+board_1: Recuadro 1
+board_2: Recuadro 2
+board_3: Recuadro 3
+subsection_1: Subsección 1
+subsection_2: Subsección 2
+subsection_3: Subsección 3
+subsection_4: Subsección 4
+subsection_5: Subsección 5
+measurement: %
+calendar: Calendario
+total: Total

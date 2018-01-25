@@ -6,11 +6,11 @@ require_once 'core/global.php';
 // Base para los controladores
 require_once 'core/Controller.php';
 
-// Recuperamos las variables pasadas por GET
-$var_controller = filter_input(INPUT_GET, GET_CONTROLLER);
-$var_action = filter_input(INPUT_GET, GET_ACTION);
+// Recuperamos las variables pasadas por la URL
+$url_var = explode('/', filter_input(INPUT_GET, GET_CONTROLLER));
 
 // Cargamos controladores y acciones
 $controller = new Controller();
-$controller->load($var_controller);
-$controller->execute($var_action);
+$controller->setUrl_var($url_var);
+$controller->load();
+$controller->execute();

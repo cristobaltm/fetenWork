@@ -4,22 +4,35 @@ class UsuariosController extends Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$name = "Usuarios";
-		parent::loadModel($name);
-		parent::loadView($name);
+		$this->name = "usuarios";
+		parent::loadModel($this->name);
 	}
 
-	public function index() {
+	public function listado() {
 		//Conseguimos todos los usuarios
 		$allusers = $this->model->getAll();
 		$allusersHTML = $this->view->userTable($allusers);
 
-		//Cargamos la vista index y le pasamos valores
+		return $allusersHTML;
+	}
+
+	public function main() {
+		$this->view->setPage($this->name);
+		$this->view->getMenu();
 		$this->view(array(
-			"users_table" => $allusersHTML,
-			'Hola' => 'Ejemplo microFramework MVC-POO',
-			'header' => 'Ejemplo microFramework MVC-POO',
+			'content' => $this->getContent('usuarios'),
+			'form_action' => $this->view->url("usuarios", "crear"),
 		));
+	}
+
+	private function getContent($html) {
+		require_once ('core/resources/Template.php');
+		$template = new Template();
+
+		$replace = array(
+			'users_table' => $this->listado()
+		);
+		return $template->get_html($html, $replace);
 	}
 
 	public function crear() {
@@ -38,20 +51,15 @@ class UsuariosController extends Controller {
 			$this->model->setPassword(sha1($password));
 			$this->model->save();
 		}
-		$this->redirect("Usuarios", "index");
+		$this->redirect("usuarios", "main");
 	}
 
 	public function borrar() {
-		$id = (int) filter_input(INPUT_GET, "id");
+		$id = (int) $this->url_var[1];
 		if (!empty($id)) {
 			$this->model->deleteById($id);
 		}
-		$this->redirect();
-	}
-
-	public function hola() {
-		$usu = $this->model->getUnUsuario(ADMIN_EMAIL);
-		var_dump($usu);
+		$this->redirect("usuarios", "main");
 	}
 
 }

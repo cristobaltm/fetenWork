@@ -1,0 +1,12 @@
+
+Options -MultiViews
+RewriteEngine On
+
+DirectoryIndex index.html index.php index.php3 
+RewriteCond %{SERVER_PORT} 80
+
+Options -Indexes
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?page=$1 [QSA,L]

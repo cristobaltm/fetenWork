@@ -1,0 +1,18 @@
+
+	<section class="col-lg-8">
+		<h3 class="section_header"><span class="glyphicon glyphicon-link"></span> @@lbl_urls@@</h3>
+		<section style="height:400px;overflow-y:scroll;" class="contenido">
+			@@urls_table@@
+		</section>
+	</section>
+
+	<section class="col-lg-4">
+		<h3 class="section_header"><span class="glyphicon glyphicon-plus"></span> @@lbl_add_link@@</h3>
+		<section class="contenido">			
+			<form action="@@form_action@@" method="post">
+				@@lbl_label@@: <input type="text" name="label" class="form-control"/>
+				@@lbl_link@@: <input type="text" name="url" class="form-control"/>
+				<input type="submit" value="@@lbl_send@@" class="btn btn-success"/>
+			</form>
+		</section>
+	</section>

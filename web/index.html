@@ -1,45 +1,143 @@
-<!DOCTYPE HTML>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en" class="no-js yui3-js-enabled webkit ltr js chrome chrome51 chrome51-0 win secure">
     <head>
-        <meta charset="utf-8"/>
-        <title>@@title_site@@</title>
-        <link href="@@path_web@@/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="@@path_web@@/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="@@path_web@@/js/jquery.min.js"></script>
-        <style>
-            input{
-                margin-top:5px;
-                margin-bottom:5px;
-            }
-            .right{
-                float:right;
-            }
-        </style>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="@@lbl_title_site@@ @@lbl_group_name@@">
+		<title>@@lbl_title_site@@ - @@lbl_group_name@@</title>
+
+		<link href="@@path_web@@img/ico_uFW.ico" rel="Shortcut Icon">
+
+		<link href="@@path_web@@css/bootstrap.min.css" rel="stylesheet">
+		<link href="@@path_web@@css/font-awesome.min.css" rel="stylesheet">
+		<link href="@@path_web@@css/main.css" rel="stylesheet" type="text/css">
+
     </head>
     <body>
-		<div class="col-lg-12">
-			<h1>@@header@@</h1>
-		</div>
-        <form action="@@form_action@@" method="post" class="col-lg-3">
-            <h3><span class="glyphicon glyphicon-user"></span> Añadir usuario</h3>
-			<hr/>
-            Nombre: <input type="text" name="nombre" class="form-control"/>
-            Apellido: <input type="text" name="apellido" class="form-control"/>
-            Email: <input type="text" name="email" class="form-control"/>
-            Contraseña: <input type="password" name="password" class="form-control"/>
-            <input type="submit" value="enviar" class="btn btn-success"/>
-        </form>
+		<a name="begin" class="yui3-skin-sam controls-visible signed-in private-page site"></a> 
+		<header id="fW_header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<ul>
+							<li><a href="@@path_site@@"><i class="fa fa-home" title="@@lbl_index@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa fa-user-o" title="@@lbl_link_1@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-envelope-o" title="@@lbl_link_2@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-bell-o" title="@@lbl_link_3@@"></i></a></li>
+							<li><a href="@@group_web@@" target="_blank"><i class="fa fa-connectdevelop"></i> @@lbl_group_name@@</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-6">
+						<div class="social">							
+							<a href="@@url_facebook@@" title="Facebook" target="_blank">
+								<span class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-facebook fa-stack-1x fa-inverse"></i> 
+								</span> 
+							</a> 					
+							<a href="@@url_twitter@@" title="Twitter" target="_blank">
+								<span class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-twitter fa-stack-1x fa-inverse"></i> 
+								</span> 
+							</a> 					
+							<a href="@@url_instagram@@" title="Instagram" target="_blank">
+								<span class="fa-stack fa-lg"> <i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-instagram fa-stack-1x fa-inverse"></i> 
+								</span> 
+							</a> 
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="fW_header_label">
+							<h1>@@lbl_title_site@@<br><span>@@lbl_team_name@@</span></h1>
+							<img class="section_logo" src="@@path_web@@img/uFW.png"> <img class="logo" src="@@path_web@@img/logo_uFW.png" alt="@@lbl_group_name@@"> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 
-        <div class="col-lg-9">
-            <h3><span class="glyphicon glyphicon-eye-open"></span> Usuarios</h3>
-            <hr/>
-        </div>
-        <section class="col-lg-9 usuario" style="height:400px;overflow-y:scroll;">
-			@@users_table@@
-        </section>
-        <footer class="col-lg-12">
-            <hr/>
-            @@title_site@@ - <a href="@@author_web@@" target="_blank">@@author_name@@</a> &copy; @@year@@
-        </footer>
+		<main id="fW_main">
+			<div class="container">
+
+				<div id="fW_lateral" class="col-sm-3">
+					<div class="menuLateral">
+						<nav class="navbar navbar-inverse">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> 
+									<span class="sr-only">@@lbl_menu@@</span>
+									<i class="fa fa-bars"></i>
+								</button> 
+							</div>
+							<div id="navbar" class="collapse navbar-collapse">
+								<span id="bt_hide_menu">					
+									<i class="fa fa-angle-double-left fa-inverse"></i> 		    
+								</span>
+								@@nav_ul@@
+							</div>
+						</nav>
+					</div>
+				</div>
+
+				<div id="fW_main_content" class="col-sm-9">
+
+					<span id="bt_show_menu">					
+						<i class="fa fa-angle-double-right fa-inverse"></i> 
+						@@lbl_menu@@
+					</span>
+					<div class="portlet-boundary portlet-boundary_103_ portlet-static portlet-static-end " id="p_p_id_103_">
+						<span id="p_103"></span> 
+						<div class="portlet-body"> </div>
+					</div>
+					<div class="columns-1" id="main-content" role="main">
+						<div class="portlet-layout">
+							<div class="portlet-column portlet-column-only" id="column-1">
+								@@content@@
+							</div>
+						</div>
+					</div>
+					<form action="#" id="hrefFm" method="post" name="hrefFm"> <span></span> </form>
+				</div>
+			</div>
+		</main>
+
+		<footer id="fW_footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-7">
+						<h2><span>@@lbl_title_site@@ - @@lbl_group_name@@</span></h2>
+					</div>
+					<div class="col-sm-5">
+						<a title="@@lbl_go_up@@" href="#begin" class="go_up">
+							<span class="fa-stack fa-lg"> 
+								<i class="fa fa-square fa-stack-2x"></i>
+								<i class="fa fa-chevron-up fa-stack-1x fa-inverse"></i> 
+							</span> 
+						</a>
+						<ul>
+							<li><a href="@@path_site@@"><i class="fa fa-home" title="@@lbl_index@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa fa-user-o" title="@@lbl_link_1@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-envelope-o" title="@@lbl_link_2@@"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fa fa-bell-o" title="@@lbl_link_3@@"></i></a></li>
+							<li><a href="@@group_web@@" target="_blank"><i class="fa fa-connectdevelop"></i> @@lbl_group_name@@</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<div id="overbox3">
+			<div id="infobox3">
+				<p>@@lbl_cookie_polity@@
+					<a href="polity">@@lbl_more_information@@</a>
+					<a onclick="accept_cookies();" style="cursor:pointer;"><span class="fa fa-home"></span> @@lbl_close@@</a></p>
+			</div>
+		</div>
+		<script src="@@path_web@@js/jquery.min.js"></script> 
+		<script src="@@path_web@@js/bootstrap.min.js"></script>
+		<script src="@@path_web@@js/ie10-viewport-bug-workaround.js"></script>   
+		<script src="@@path_web@@js/cookie.js"></script>
+		<script src="@@path_web@@js/main.js"></script>@@scripts@@	
     </body>
 </html>

@@ -79,6 +79,12 @@ class DBConnection {
 		return $query;
 	}
 
+	public function updateById($id, $field, $value) {
+		$sql = "UPDATE {$this->table} SET {$field} = '{$value}' WHERE {$this->id_name} = {$id}";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 	/*
 	 * Aquí podemos montarnos un montón de métodos que nos ayuden
 	 * a hacer operaciones con la base de datos de la entidad

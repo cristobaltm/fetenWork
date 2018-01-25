@@ -10,4 +10,4 @@ En la carpeta 'vendor' se encuentran las siguientes librerías externas:
 * copyright: "(c) 2005-2006 Chris Wanstrath, 2006-2011 Vlad Andersen"
 * download: https://code.google.com/archive/p/spyc/downloads
 
-> Esta librería se encarga de leer archivos YAML y transformarlos en un array PHP.
+> Lee archivos YAML y los transforma en un array PHP

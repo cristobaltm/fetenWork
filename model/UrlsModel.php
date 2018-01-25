@@ -57,4 +57,12 @@ VALUES (NULL, '{$this->label}', '{$this->url}', '{$this->target}', NOW(), 0);";
 		return $save;
 	}
 
+	public function edit($field, $value, $id) {
+		$query = "UPDATE {$this->table} SET {$field} = '{$value}' WHERE id_url = {$id}";
+		die($query);
+
+		$edit = $this->db()->query($query);
+		return $edit;
+	}
+
 }

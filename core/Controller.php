@@ -1,12 +1,14 @@
 <?php
 
 class Controller {
-
 	# Atributos
 
 	private $controller = null;
 	protected $view = null;
 	protected $model = null;
+	protected $url_var = array();
+	protected $language = '';
+	private $allowed_languages = array();
 
 	# Constructor y destructor
 
@@ -20,10 +22,52 @@ class Controller {
 		require_once 'Model.php';
 		// Incluir la vista Base
 		require_once 'View.php';
+		// Idiomas
+		$this->language = DEFAULT_LANG;
+		$this->allowed_languages = explode(',', ALLOWED_LANGUAGES);
 	}
 
 	function __destruct() {
 		
+	}
+
+	# Setters
+
+	function setController($controller) {
+		$this->controller = $controller;
+	}
+
+	function setView($view) {
+		$this->view = $view;
+	}
+
+	function setModel($model) {
+		$this->model = $model;
+	}
+
+	function setLanguage($language) {
+		$this->language = $language;
+	}
+
+	function setUrl_var($url_var) {
+		$first_num = 0;
+		foreach ($url_var as $num => $var) {
+			if ($num == 0 && in_array($var, $this->allowed_languages)) {
+				$this->language = $var;
+				$this->url_var['lan'] = $var;
+				$first_num++;
+			} else if ($num == 0) {
+				$this->url_var['lan'] = DEFAULT_LANG;
+			}
+
+			if ($num == $first_num) {
+				$this->url_var['controller'] = $var;
+			} else if ($num == $first_num + 1) {
+				$this->url_var['action'] = $var;
+			} else if ($num > $first_num + 1) {
+				$this->url_var[$num - ($first_num + 1)] = $var;
+			}
+		}
 	}
 
 	# Métodos
@@ -37,15 +81,21 @@ class Controller {
 		$controller = ucwords($name) . 'Controller';
 		$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
-		// Si no existe el fichero, carga el controlador por defecto
+		// Si no existe el fichero, carga el controlador de errores
 		if (!is_file($strFileController)) {
-			$controller = DEFAULT_CONTROLLER . 'Controller';
+			$controller = 'ErrorController';
 			$strFileController = PATH_CONTROLLERS . $controller . ".php";
 		}
 
 		// Incluye el fichero y carga el controlador
 		require_once $strFileController;
 		$this->controller = new $controller();
+
+		// Cargar las variables URL en el controlador
+		$this->controller->url_var = $this->url_var;
+
+		// Carga la vista que usará el controlador
+		$this->controller->loadView($this->controller->name, $this->language);
 	}
 
 	/**
@@ -71,8 +121,9 @@ class Controller {
 	/**
 	 * Carga la vista, y si no existe carga la de por defecto
 	 * @param string $name Nombre de la vista
+	 * @param string $language Idioma
 	 */
-	protected function loadView($name) {
+	protected function loadView($name, $language = '') {
 		// Define la vista y la ruta del fichero
 		$view = ucwords($name) . 'View';
 		$strFileView = PATH_VIEWS . $view . ".php";
@@ -86,14 +137,23 @@ class Controller {
 		// Incluye el fichero y carga la vista
 		require_once $strFileView;
 		$this->view = new $view();
+
+		// Idioma actual
+		if (empty($language) || !in_array($language, $this->allowed_languages)) {
+			$language = $this->language;
+		}
+		$this->view->setLanguage($language);
 	}
 
 	/**
 	 * Carga el controlador llamando al método loadController
 	 * @param string $name Nombre del controlador
 	 */
-	public function load($name) {
-		$this->loadController($name);
+	public function load() {
+		if (empty($this->url_var['controller'])) {
+			$this->url_var['controller'] = DEFAULT_CONTROLLER;
+		}
+		$this->loadController($this->url_var['controller']);
 	}
 
 	/**
@@ -101,9 +161,14 @@ class Controller {
 	 * @param string $action Nombre de la acción
 	 * @return bool resultado de la acción
 	 */
-	public function execute($action) {
+	public function execute() {
+		if (empty($this->url_var['action'])) {
+			$this->url_var['action'] = DEFAULT_ACTION;
+		}
+
 		// Si no existe el método dentro del controlador,
 		// ejecuta la acción por defecto
+		$action = $this->url_var['action'];
 		if (!method_exists($this->controller, $action)) {
 			$action = DEFAULT_ACTION;
 		}
@@ -116,10 +181,15 @@ class Controller {
 	 * Recibe datos a reemplazar en forma de array y muestra la vista
 	 * @param array $data Datos del controlador en array
 	 */
-	public function view($data = array()) {
+	public function view($data = array(), $write = true) {
 		if (!empty($this->view)) {
 			$this->view->setReplace($data);
+			if ($write === false) {
+				$html = $this->view->write($write);
+				return $html;
+			}
 			$this->view->write();
+			return true;
 		}
 	}
 

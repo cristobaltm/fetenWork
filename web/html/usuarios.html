@@ -1,0 +1,21 @@
+
+	<section class="col-lg-8">
+		<h3 class="section_header"><span class="glyphicon glyphicon-user"></span> @@lbl_users@@</h3>
+		<section style="height:400px;overflow-y:scroll;" class="contenido">
+			@@users_table@@
+		</section>
+	</section>
+
+	<section class="col-lg-4">
+		<h3 class="section_header"><span class="glyphicon glyphicon-plus"></span> @@lbl_add_user@@</h3>
+		<section class="contenido">			
+			<form action="@@form_action@@" method="post">
+				@@lbl_name@@: <input type="text" name="nombre" class="form-control"/>
+				@@lbl_surname@@: <input type="text" name="apellido" class="form-control"/>
+				@@lbl_email@@: <input type="text" name="email" class="form-control"/>
+				@@lbl_pass@@: <input type="password" name="password" class="form-control"/>
+				<input type="submit" value="@@lbl_send@@" class="btn btn-success"/>
+			</form>
+		</section>
+	</section>
+

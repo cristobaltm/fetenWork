@@ -1,0 +1,7 @@
+level;label;url;type;target;privacy
+1;index;index;internal;_self;public
+1;users;usuarios;internal;_self;public
+1;urls;urls;internal;_self;public
+1;others_webs;;submenu;;
+2;github;https://github.com/cristobaltm/mvc;external;_blank;public
+2;mvc_site;https://victorroblesweb.es/2014/07/15/ejemplo-php-poo-mvc/;external;_blank;public

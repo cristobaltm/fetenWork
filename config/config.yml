@@ -2,29 +2,30 @@
 ## CONFIGURACIÓN DEL SITIO ##
 #############################
 
-# Título del sitio
-TITLE_SITE: Ejemplo PHP MySQLi POO MVC
-
 # email del administrador
 ADMIN_EMAIL: cristobaltm@gmail.com
 
 # Nombre del autor
-AUTHOR_NAME: Cristobal TM
+AUTHOR_NAME: ©ristóbal Torres Montero
 
-# Web del autor
-AUTHOR_WEB: https://github.com/cristobaltm/mvc
+# Web del grupo
+GROUP_WEB: https://github.com/cristobaltm
 
+# Lenguajes permitidos. Separados por comas, sin espacios
+ALLOWED_LANGUAGES: es,en
 
 #########################
 ## VALORES POR DEFECTO ##
 #########################
 
-# Controlador por defecto
-# (también será el nombre por defecto para modelo y vista)
-DEFAULT_CONTROLLER: Usuarios
+# Lenguaje por defecto
+DEFAULT_LANG: es
+
+# Controlador por defecto (también modelo y vista)
+DEFAULT_CONTROLLER: index
 
 # Acción por defecto
-DEFAULT_ACTION: index
+DEFAULT_ACTION: main
 
 # Plantilla por defecto
 DEFAULT_TEMPLATE: index
@@ -32,26 +33,22 @@ DEFAULT_TEMPLATE: index
 # Entorno por defecto
 DEFAULT_ENVIRONMENT: dev
 
-# Nombre de la variable GET que define el controlador
-GET_CONTROLLER: controller
-
-# Nombre de la variable GET que define la acción
-GET_ACTION: action
-
 
 ###########
 ## RUTAS ##
 ###########
 
-# Ruta de los modelos
-PATH_MODELS: model/
+# Ruta del sitio en producción
+PATH_SITE_PROD: http://localhost/mis%20frameworks/mvc-victorobs/
 
-# Ruta de las vistas
-PATH_VIEWS: view/
+# Ruta del sitio en desarrollo
+PATH_SITE_DEV: http://localhost/mis%20frameworks/mvc-victorobs/
 
-# Ruta de los controladores
-PATH_CONTROLLERS: controller/
+# Página en facebook
+URL_FACEBOOK: https://www.facebook.com/
 
-# Ruta de los archivos web
-PATH_WEB: web/
+# Página en twitter
+URL_TWITTER: https://www.twitter.com/
 
+# Página en instagram
+URL_INSTAGRAM: https://www.instagram.com/
