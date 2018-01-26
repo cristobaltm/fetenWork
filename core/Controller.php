@@ -82,9 +82,11 @@ class Controller {
 		$strFileController = PATH_CONTROLLERS . $controller . ".php";
 
 		// Si no existe el fichero, carga el controlador de errores
+		$error = false;
 		if (!is_file($strFileController)) {
 			$controller = 'ErrorController';
 			$strFileController = PATH_CONTROLLERS . $controller . ".php";
+			$error = true;
 		}
 
 		// Incluye el fichero y carga el controlador
@@ -96,6 +98,12 @@ class Controller {
 
 		// Carga la vista que usará el controlador
 		$this->controller->loadView($this->controller->name, $this->language);
+		
+//		// Si se produjo error 404, mostrarlo
+		if ($error) {			
+			$this->controller->view->setMessage("@@lbl_error_404@@");
+			$this->controller->view->setIcon("error_404.png");
+		}
 	}
 
 	/**

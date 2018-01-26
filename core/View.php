@@ -15,6 +15,7 @@ class View {
 		$this->replace = array(
 			'path_site' => PATH_SITE,
 			'path_web' => PATH_SITE . PATH_WEB,
+			'framework_name' => FRAMEWORK_NAME,
 			'author_name' => AUTHOR_NAME,
 		);
 	}

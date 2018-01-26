@@ -508,7 +508,7 @@ ul.nav .submenu li a.active {
     padding: 10px 20px;
 }
 
-section.contenido {
+section.content {
     padding: 20px;
     margin-bottom: 40px;
     background: #fff;
@@ -516,7 +516,7 @@ section.contenido {
     -moz-box-shadow: 0 0 10px #999;
     box-shadow: 0 0 10px #999; }
 
-section.contenido h2 {
+section.content h2 {
     font-size: 30px;
     color: #fff;
     font-weight: normal;
@@ -663,14 +663,14 @@ img.calendar {
 	float: right;
 	margin: -30px 5px 0 0; } }
 /********************** HOME **********************/
-/* Usuario */
-.usuarioInfo {
-    border-top: 75px solid #0F5B30;
+/* Error */
+.errorInfo {
+    border-top: 75px solid #802B15;
     text-align: center;
     margin: -20px;
     padding: 20px; }
 
-.usuarioInfo img.user {
+.errorInfo img.icon {
     width: 125px;
     height: 125px;
     margin: -80px 0 10px 0;
@@ -680,7 +680,32 @@ img.calendar {
     border: 5px solid #e5e4e4;
     background-color: #e5e4e4; }
 
-.contenido .usuarioInfo h2 {
+.content .errorInfo h2 {
+    font-size: 30px;
+    color: #551200;
+    font-weight: normal;
+    background: transparent;
+    margin: 4px 0 7px 0;
+    padding: 0; }
+
+/* Usuario */
+.userInfo {
+    border-top: 75px solid #0F5B30;
+    text-align: center;
+    margin: -20px;
+    padding: 20px; }
+
+.userInfo img.user {
+    width: 125px;
+    height: 125px;
+    margin: -80px 0 10px 0;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid #e5e4e4;
+    background-color: #e5e4e4; }
+
+.content .userInfo h2 {
     font-size: 30px;
     color: #0F5B30;
     font-weight: normal;
@@ -688,29 +713,29 @@ img.calendar {
     margin: 4px 0 7px 0;
     padding: 0; }
 
-.usuarioInfo h3 {
+.userInfo h3 {
     margin: 0 0 5px 0;
     padding: 0; }
 
-.usuarioInfo .correo {
+.userInfo .correo {
     word-wrap: break-word;
     margin-top: -10px; }
 
-.usuarioInfo i.fa {
+.userInfo i.fa {
     font-size: 1.4em;
     vertical-align: top;
     margin-right: 3px; }
 
-.usuarioInfo i.fa-map-marker {
+.userInfo i.fa-map-marker {
     font-size: 1.4em; }
 
-.usuarioInfo i.fa-mobile {
+.userInfo i.fa-mobile {
     font-size: 1.65em; }
 
-.usuarioInfo i.fa-envelope-o {
+.userInfo i.fa-envelope-o {
     font-size: 1.2em; }
 
-.usuarioInfo ul {
+.userInfo ul {
     margin: 20px 0 0 0;
     padding: 10px 0 0 0;
     list-style-type: none;
@@ -718,27 +743,28 @@ img.calendar {
     border-top: 1px solid #0F5B30; }
 
 @media (max-width: 500px) {
-    .usuarioInfo ul {
+    .userInfo ul {
 	padding: 0; } }
-.usuarioInfo ul li {
+.userInfo ul li {
     display: inline;
     padding: 0 10px;
     border-right: 1px solid #0F5B30;
     white-space: nowrap; }
 
-.usuarioInfo ul li:last-child {
+.userInfo ul li:last-child {
     border-right: 0px; }
 
 @media (max-width: 500px) {
-    .usuarioInfo ul li {
+    .userInfo ul li {
 	display: block;
 	border-right: 0;
 	border-bottom: 1px solid #0F5B30;
 	padding: 8px 0;
 	white-space: normal; }
 
-    .usuarioInfo ul li a {
+    .userInfo ul li a {
 	display: block; } }
+
 /* Slider home */
 .slide {
     margin-bottom: 40px;
@@ -935,29 +961,33 @@ img.calendar {
     margin-bottom: 10px; }
 
 /* Fechas relevantes */
-.fechasRelevantes h3 {
+.calendar h3 {
     color: #0F5B30;
     font-size: 19px;
     font-weight: bold;
     margin-bottom: 10px;
     margin-top: 0px; }
 
-.fechasRelevantes h3 span {
+.calendar h3 span {
     color: #000;
     font-weight: normal; }
 
-.fechasRelevantes .verCalendario {
+.calendar h4 a {
+	color: white;
+}
+
+.calendar .verCalendario {
     margin: 0 0 10px 5px;
     padding: 0 10px;
     float: right;
     font-size: 0.9em; }
 
-.fechasRelevantes .verCalendario i.fa {
+.calendar .verCalendario i.fa {
     font-size: 1.4em;
     vertical-align: top;
     margin-left: 3px; }
 
-.fechasRelevantes ul {
+.calendar ul {
     margin: 0px auto;
     padding: 0;
     list-style-type: none;
@@ -970,7 +1000,7 @@ img.calendar {
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap; }
 
-.fechasRelevantes ul li {
+.calendar ul li {
     background-color: #fff;
     color: #0F5B30;
     text-align: center;
@@ -986,13 +1016,13 @@ img.calendar {
     -moz-box-shadow: 1px 1px 0px 0px #003D1B inset, -1px -1px 0px 0px #003D1B inset; }
 
 @media (max-width: 800px) {
-    .fechasRelevantes ul li {
+    .calendar ul li {
 	width: 50%; } }
 @media (max-width: 340px) {
-    .fechasRelevantes ul li {
+    .calendar ul li {
 	width: 100%;
 	border: 0; } }
-.fechasRelevantes ul li h4 {
+.calendar ul li h4 {
     background-color: #0F5B30;
     color: #fff;
     text-transform: uppercase;
@@ -1000,12 +1030,12 @@ img.calendar {
     margin: -10px -10px 10px -10px;
     padding: 10px; }
 
-.fechasRelevantes ul li span.dia {
+.calendar ul li span.dia {
     display: block;
     font-size: 3.3em;
     font-weight: bold; }
 
-.fechasRelevantes ul li.diasVacacion {
+.calendar ul li.diasVacacion {
     position: relative;
     background-color: #0F5B30;
     color: #fff;
@@ -1014,51 +1044,51 @@ img.calendar {
     background-repeat: no-repeat;
     background-size: cover; }
 
-.fechasRelevantes ul li.diasVacacion h4 {
+.calendar ul li.diasVacacion h4 {
     background-color: rgba(122, 31, 94, 0.8);
     border-bottom: 1px dotted #e5e4e4; }
 
-.fechasRelevantes ul li.diasVacacion span.dia {
+.calendar ul li.diasVacacion span.dia {
     font-size: 4.4em; }
 
-.fechasRelevantes ul li.diasVacacion a {
+.calendar ul li.diasVacacion a {
     color: #FFF;
     /*float:right; */
     position: absolute;
     right: 8px; }
 
-.fechasRelevantes ul li.diasVacacion a:hover {
+.calendar ul li.diasVacacion a:hover {
     -ms-transform: scale(1.2);
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
     transform: scale(1.2); }
 
-.fechasRelevantes ul li.diasVacacion i.fa {
+.calendar ul li.diasVacacion i.fa {
     font-size: 1.6em;
     margin-top: -3px; }
 
-.fechasRelevantes ul li.diaFestivo {
+.calendar ul li.diaFestivo {
     background-color: #0F5B30;
     color: #fff; }
 
-.fechasRelevantes ul li.diaFestivo h4 {
+.calendar ul li.diaFestivo h4 {
     border-bottom: 1px dotted #e5e4e4; }
 
-.fechasRelevantes ul li.diaFestivo a {
+.calendar ul li.diaFestivo a {
     color: #FFF; }
 
-.fechasRelevantes ul li.fechasPropias i.fa {
+.calendar ul li.fechasPropias i.fa {
     display: block;
     font-size: 4.5em;
     margin-bottom: 8px; }
 
-.fechasRelevantes ul li.fechasPropias a {
+.calendar ul li.fechasPropias a {
     text-decoration: none;
     display: block;
     height: 100%;
     font-size: 0.9em; }
 
-.fechasRelevantes ul li.fechasPropias a:hover {
+.calendar ul li.fechasPropias a:hover {
     -ms-transform: scale(1.05);
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);

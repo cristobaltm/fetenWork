@@ -10,14 +10,20 @@ menu: Menú
 index: Inicio
 users: Usuarios
 urls: Enlaces
-others_webs: Otras webs
+others_webs: Recursos
 github: Github
+color_palette: Paleta de colores en Paletton.com
+fontawesome: Iconos en fontawesome.io
 mvc_site: Ejemplo PHP + POO + MVC
 
-# Mensajes
+# Mensajes de confirmación
 
-error_wrong_page: La página que solicita no existe
 confirm_delete: ¿Deseas eliminar este registro?
+
+# Mensajes de error
+
+error_default: Ocurrió un error inesperado
+error_404: La página que solicita no existe
 
 # Acciones
 
@@ -50,19 +56,18 @@ more_information: Más información
 # Ejemplo portada
 
 section_title: Ejemplo de portada
-link_1: Enlace 1
-link_2: Enlace 2
-link_3: Enlace 3
-section_1: Sección 1
-section_2: Sección 2
-board_1: Recuadro 1
-board_2: Recuadro 2
-board_3: Recuadro 3
-subsection_1: Subsección 1
-subsection_2: Subsección 2
-subsection_3: Subsección 3
-subsection_4: Subsección 4
-subsection_5: Subsección 5
-measurement: %
-calendar: Calendario
-total: Total
+link_1: Estilo CSS
+link_2: Enlace roto
+link_3: Paleta de colores
+section_1: Calendario
+board_1: Día 1
+board_2: Día 2
+board_3: Día 3
+section_2: Documentos
+subsection_1: Texto
+subsection_2: Código
+subsection_3: Excel
+subsection_4: PDF
+subsection_5: Imagen
+calendar: Ver calendario
+total: Ver más

@@ -33,7 +33,6 @@ DEFAULT_TEMPLATE: index
 # Entorno por defecto
 DEFAULT_ENVIRONMENT: dev
 
-
 ###########
 ## RUTAS ##
 ###########
@@ -43,6 +42,14 @@ PATH_SITE_PROD: http://localhost/mis%20frameworks/mvc-victorobs/
 
 # Ruta del sitio en desarrollo
 PATH_SITE_DEV: http://localhost/mis%20frameworks/mvc-victorobs/
+
+#########################
+## ENLACES DEL EJEMPLO ##
+#########################
+
+URL_1: web/css/main.css
+URL_2: broken_link
+URL_3: _documentation/color_palette.html
 
 # Página en facebook
 URL_FACEBOOK: https://www.facebook.com/

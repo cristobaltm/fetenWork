@@ -32,6 +32,7 @@ if (ENVIRONMENT === 'dev') {
 # Constantes predefinidas #
 # (no se deben modificar) #
 ###########################
+
 # Nombre de la variable GET que define el controlador
 define("GET_CONTROLLER", "page");
 
@@ -46,3 +47,6 @@ define("PATH_CONTROLLERS", "controller/");
 
 # Ruta de los archivos web
 define("PATH_WEB", "web/");
+
+# Ruta de los archivos web
+define("FRAMEWORK_NAME", "fetenWork");

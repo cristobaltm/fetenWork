@@ -17,11 +17,12 @@ class IndexController extends Controller {
 		));
 	}
 
-	private function getRandom($low = true) {
-		if ($low === true) {
-			return rand(1, 99);
+	private function getRandom($day = true) {
+		if ($day === true) {
+			return rand(1, 31);
 		}
-		return rand(100, 999);
+		$month = rand(1, 12) . "/" . date("Y");
+		return $month;
 	}
 
 	private function getContent() {
@@ -29,12 +30,12 @@ class IndexController extends Controller {
 		$template = new Template();
 
 		$replace = array(
-			'random_1' => $this->getRandom(false),
-			'random_2' => $this->getRandom(),
-			'random_3' => $this->getRandom(false),
-			'random_4' => $this->getRandom(),
-			'random_5' => $this->getRandom(false),
-			'random_6' => $this->getRandom(),
+			'random_1' => $this->getRandom(),
+			'random_2' => $this->getRandom(false),
+			'random_3' => $this->getRandom(),
+			'random_4' => $this->getRandom(false),
+			'random_5' => $this->getRandom(),
+			'random_6' => $this->getRandom(false),
 		);
 		return $template->get_html('example', $replace);
 	}
