@@ -8,7 +8,7 @@ class UrlsController extends Controller {
 		parent::loadModel($this->name);
 	}
 
-	public function listado() {
+	public function showList() {
 		//Conseguimos todos los usuarios
 		$allurls = $this->model->getAll();
 		return $this->view->urlTable($allurls);
@@ -19,21 +19,21 @@ class UrlsController extends Controller {
 		$this->view->getMenu();
 		$this->view(array(
 			'content' => $this->getContent('urls'),
-			'form_action' => $this->view->url("urls", "crear"),
+			'form_action' => $this->view->url("urls", "insert"),
 		));
 	}
 
 	private function getContent($html) {
-		require_once ('core/resources/Template.php');
+		require_once ('app/core/resources/Template.php');
 		$template = new Template();
 
 		$replace = array(
-			'urls_table' => $this->listado()
+			'urls_table' => $this->showList()
 		);
 		return $template->get_html($html, $replace);
 	}
 
-	public function edicion() {
+	public function edit() {
 		if (empty($this->url_var[1])) {
 			$this->redirect("urls");
 			return false;
@@ -48,7 +48,7 @@ class UrlsController extends Controller {
 		$this->view->getMenu();
 		$this->view(array(
 			'content' => $this->getContent('url_edit'),
-			'form_action' => $this->view->url("urls", "editar"),
+			'form_action' => $this->view->url("urls", "update"),
 			'id_val' => $data->id_url,
 			'etiqueta_val' => $data->label,
 			'direccion_val' => $data->url,
@@ -56,7 +56,7 @@ class UrlsController extends Controller {
 		return true;
 	}
 
-	public function crear() {
+	public function insert() {
 
 		$label = filter_input(INPUT_POST, "label");
 		$url = filter_input(INPUT_POST, "url");
@@ -73,7 +73,7 @@ class UrlsController extends Controller {
 		$this->redirect("urls");
 	}
 
-	public function editar() {
+	public function update() {
 
 		$id = filter_input(INPUT_POST, "id");
 		$label = filter_input(INPUT_POST, "label");
@@ -86,7 +86,7 @@ class UrlsController extends Controller {
 		$this->redirect("urls");
 	}
 
-	public function borrar() {
+	public function delete() {
 		$id = (int) $this->url_var[1];
 		if (!empty($id)) {
 			$this->model->deleteById($id);

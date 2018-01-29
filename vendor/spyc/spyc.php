@@ -5,6 +5,7 @@
    * @author Vlad Andersen <vlad.andersen@gmail.com>
    * @author Chris Wanstrath <chris@ozmm.org>
    * @link http://code.google.com/p/spyc/
+   * @link https://github.com/mustangostang/spyc/
    * @copyright Copyright 2005-2006 Chris Wanstrath, 2006-2011 Vlad Andersen
    * @license http://www.opensource.org/licenses/mit-license.php MIT License
    * @package Spyc

@@ -26,7 +26,7 @@ class IndexController extends Controller {
 	}
 
 	private function getContent() {
-		require_once ('core/resources/Template.php');
+		require_once ('app/core/resources/Template.php');
 		$template = new Template();
 
 		$replace = array(

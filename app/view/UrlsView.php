@@ -10,8 +10,8 @@ class UrlsView extends SiteTemplate {
 
 		parent::setHtml_template("index");
 
-		parent::add_vars_language_js(array('confirm_delete'));
-		parent::add_scripts(array("urls.js"));
+		parent::addVarsLanguageJS(array('confirm_delete'));
+		parent::addScripts(array("urls.js"));
 
 		parent::setReplace(array(
 			'year' => date("Y"),
@@ -25,8 +25,8 @@ class UrlsView extends SiteTemplate {
 	public function urlTable($data) {
 		$html = "";
 		foreach ($data as $user) {
-			$delete_url = $this->url("urls", "borrar", array($user->id_url));
-			$edit_url = $this->url("urls", "edicion", array($user->id_url));
+			$delete_url = $this->url("urls", "delete", array($user->id_url));
+			$edit_url = $this->url("urls", "edit", array($user->id_url));
 			$html .= <<<eot
 	<a href="{$user->url}" target="{$user->target}">{$user->label}</a>
 	<div style="float:right">

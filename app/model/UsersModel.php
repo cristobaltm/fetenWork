@@ -1,15 +1,15 @@
 <?php
 
-class UsuariosModel extends Model {
+class UsersModel extends Model {
 
 	private $id;
-	private $nombre;
-	private $apellido;
+	private $name;
+	private $surname;
 	private $email;
 	private $password;
 
 	public function __construct() {
-		$table = "usuarios";
+		$table = "users";
 		$id_name = "id";
 		parent::__construct($table, $id_name);
 	}
@@ -19,11 +19,11 @@ class UsuariosModel extends Model {
 	}
 
 	function getNombre() {
-		return $this->nombre;
+		return $this->name;
 	}
 
 	function getApellido() {
-		return $this->apellido;
+		return $this->surname;
 	}
 
 	function getEmail() {
@@ -38,12 +38,12 @@ class UsuariosModel extends Model {
 		$this->id = $id;
 	}
 
-	function setNombre($nombre) {
-		$this->nombre = $nombre;
+	function setNombre($name) {
+		$this->name = $name;
 	}
 
-	function setApellido($apellido) {
-		$this->apellido = $apellido;
+	function setApellido($surname) {
+		$this->surname = $surname;
 	}
 
 	function setEmail($email) {
@@ -55,8 +55,8 @@ class UsuariosModel extends Model {
 	}
 
 	public function save() {
-		$query = "INSERT INTO usuarios (id,nombre,apellido,email,password)
-VALUES(NULL, '{$this->nombre}', '{$this->apellido}', '{$this->email}', '{$this->password}');";
+		$query = "INSERT INTO users (id,name,surname,email,password)
+VALUES(NULL, '{$this->name}', '{$this->surname}', '{$this->email}', '{$this->password}');";
 
 		$save = $this->db()->query($query);
 		//$this->db()->error;
@@ -65,9 +65,9 @@ VALUES(NULL, '{$this->nombre}', '{$this->apellido}', '{$this->email}', '{$this->
 
 	//Metodos de consulta
 	public function getUnUsuario($email) {
-		$query = "SELECT * FROM usuarios WHERE email='{$email}'";
-		$usuario = $this->executeQuery($query);
-		return $usuario;
+		$query = "SELECT * FROM users WHERE email='{$email}'";
+		$user = $this->executeQuery($query);
+		return $user;
 	}
 
 }

@@ -37,13 +37,13 @@ if (ENVIRONMENT === 'dev') {
 define("GET_CONTROLLER", "page");
 
 # Ruta de los modelos
-define("PATH_MODELS", "model/");
+define("PATH_MODELS", "app/model/");
 
 # Ruta de las vistas
-define("PATH_VIEWS", "view/");
+define("PATH_VIEWS", "app/view/");
 
 # Ruta de los controladores
-define("PATH_CONTROLLERS", "controller/");
+define("PATH_CONTROLLERS", "app/controller/");
 
 # Ruta de los archivos web
 define("PATH_WEB", "web/");

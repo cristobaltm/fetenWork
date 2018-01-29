@@ -1,10 +1,10 @@
 <?php
 
 // Configuración global
-require_once 'core/global.php';
+require_once 'app/core/global.php';
 
 // Base para los controladores
-require_once 'core/Controller.php';
+require_once 'app/core/Controller.php';
 
 // Recuperamos las variables pasadas por la URL
 $url_var = explode('/', filter_input(INPUT_GET, GET_CONTROLLER));

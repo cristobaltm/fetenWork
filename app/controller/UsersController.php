@@ -1,14 +1,14 @@
 <?php
 
-class UsuariosController extends Controller {
+class UsersController extends Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->name = "usuarios";
+		$this->name = "users";
 		parent::loadModel($this->name);
 	}
 
-	public function listado() {
+	public function showList() {
 		//Conseguimos todos los usuarios
 		$allusers = $this->model->getAll();
 		$allusersHTML = $this->view->userTable($allusers);
@@ -20,46 +20,46 @@ class UsuariosController extends Controller {
 		$this->view->setPage($this->name);
 		$this->view->getMenu();
 		$this->view(array(
-			'content' => $this->getContent('usuarios'),
-			'form_action' => $this->view->url("usuarios", "crear"),
+			'content' => $this->getContent('users'),
+			'form_action' => $this->view->url("users", "insert"),
 		));
 	}
 
 	private function getContent($html) {
-		require_once ('core/resources/Template.php');
+		require_once ('app/core/resources/Template.php');
 		$template = new Template();
 
 		$replace = array(
-			'users_table' => $this->listado()
+			'users_table' => $this->showList()
 		);
 		return $template->get_html($html, $replace);
 	}
 
-	public function crear() {
+	public function insert() {
 
-		$nombre = filter_input(INPUT_POST, "nombre");
-		$apellido = filter_input(INPUT_POST, "apellido");
+		$name = filter_input(INPUT_POST, "name");
+		$surname = filter_input(INPUT_POST, "surname");
 		$email = filter_input(INPUT_POST, "email");
 		$password = filter_input(INPUT_POST, "password");
 
-		if (!empty($nombre)) {
+		if (!empty($name)) {
 
 			//Creamos un usuario
-			$this->model->setNombre($nombre);
-			$this->model->setApellido($apellido);
+			$this->model->setNombre($name);
+			$this->model->setApellido($surname);
 			$this->model->setEmail($email);
 			$this->model->setPassword(sha1($password));
 			$this->model->save();
 		}
-		$this->redirect("usuarios", "main");
+		$this->redirect("users", "main");
 	}
 
-	public function borrar() {
+	public function delete() {
 		$id = (int) $this->url_var[1];
 		if (!empty($id)) {
 			$this->model->deleteById($id);
 		}
-		$this->redirect("usuarios", "main");
+		$this->redirect("users", "main");
 	}
 
 }

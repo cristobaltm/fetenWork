@@ -292,15 +292,15 @@ main#fW_main {
 }
 
 /* Menu lateral */
-.menuLateral {
+.lateralMenu {
     -webkit-box-shadow: 0 0 10px #999;
     -moz-box-shadow: 0 0 10px #999;
     box-shadow: 0 0 10px #999; }
 
 @media (max-width: 767px) {
-    .menuLateral {
+    .lateralMenu {
 	margin-bottom: 30px; } }
-.menuLateral nav {
+.lateralMenu nav {
     background-color: #363636;
     margin: 0;
     min-height: inherit;
@@ -309,10 +309,10 @@ main#fW_main {
     -moz-border-radius: 0;
     border: 0; }
 
-.menuLateral .navbar-header {
+.lateralMenu .navbar-header {
     text-align: center; }
 
-.menuLateral button.navbar-toggle {
+.lateralMenu button.navbar-toggle {
     float: none;
     color: #FFF;
     margin-right: 0;
@@ -324,10 +324,10 @@ main#fW_main {
     -webkit-transition: all 0.2s ease-in 0s;
     -o-transition: all 0.2s ease-in 0s; }
 
-.menuLateral button.navbar-toggle:hover {
+.lateralMenu button.navbar-toggle:hover {
     color: #cac9c9; }
 
-.menuLateral button.navbar-toggle .sr-only {
+.lateralMenu button.navbar-toggle .sr-only {
     border: 0 none;
     clip: auto;
     width: auto;
@@ -338,11 +338,11 @@ main#fW_main {
     position: static;
     text-transform: uppercase; }
 
-.menuLateral button.navbar-toggle i.fa {
+.lateralMenu button.navbar-toggle i.fa {
     margin-left: 5px;
     font-size: 1.4em; }
 
-.menuLateral .navbar-collapse {
+.lateralMenu .navbar-collapse {
     padding: 0; }
 
 /* lista de items */
@@ -524,144 +524,6 @@ section.content h2 {
     margin: -20px -20px 20px -20px;
     padding: 65px 20px 10px 20px; }
 
-/* Filtros */
-.filtros_busqueda {
-    margin: -20px -20px 20px -20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    color: #000;
-    background: url("images/background_search.png") right 20px top 10px no-repeat #f0f0f0; }
-
-.filtros_busqueda .filtrar_ano {
-    margin-bottom: 10px; }
-
-.filtros_busqueda .filtrar_ano ul {
-    list-style: none;
-    padding-left: 0px;
-    margin-top: 0px; }
-
-.filtros_busqueda .filtrar_ano ul li {
-    display: inline-block;
-    margin: 2px; }
-
-.filtros_busqueda .filtrar_ano ul li a {
-    background: #0F5B30;
-    padding: 5px 20px;
-    display: block;
-    color: #fff;
-    font-size: 14px;
-    text-decoration: none;
-    transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -webkit-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear; }
-
-.filtros_busqueda .filtrar_ano ul li a:hover {
-    background-color: #9a0d67; }
-
-.filtros_busqueda .otros_filtros {
-    margin-bottom: 10px; }
-
-.filtros_busqueda .intro_filtros {
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 5px; }
-
-.filtros_busqueda .busqueda_directa .form-group {
-    min-width: 70%; }
-
-.filtros_busqueda .busqueda_directa .form-group input {
-    width: 100%; }
-
-.filtros_busqueda .btn {
-    margin-top: -3px; }
-
-/* Paginacion */
-.paginacion {
-    background: #0F5B30;
-    color: #fff;
-    padding: 8px 20px;
-    font-size: 13px;
-    text-align: center; }
-
-.paginacion strong {
-    background: #fff;
-    color: #0F5B30;
-    padding: 2px 5px; }
-
-.paginacion a {
-    color: #fff!important;
-    text-decoration: none;
-    margin: 0 4px; }
-
-.paginacion a:hover {
-    text-decoration: underline; }
-
-.paginacion input {
-    border: none;
-    color: #000; }
-
-.paginacion .pagina_actual {
-    margin-right: 10px; }
-
-.paginacion i.fa {
-    font-size: 1.7em;
-    vertical-align: top; }
-
-p.total_resultados {
-    margin: 0;
-    background: #f0f0f0;
-    padding: 5px 20px;
-    font-size: 13px;
-    text-align: center;
-    border-top: 1px solid #003D1B;
-    color: #003D1B; }
-
-p.no_resultados {
-    margin: 0;
-    padding: 5px 20px;
-    font-size: 13px;
-    text-align: center;
-    color: #003D1B; }
-
-/* Dias Vacaciones */
-.dias {
-    width: 100%;
-    text-align: center;
-    margin: 30px 0 40px 0;
-    font-size: 1.1em; }
-
-.dias span {
-    padding: 3px 0px 3px 10px;
-    background: #f0f0f0;
-    margin: 5px;
-    white-space: nowrap;
-    line-height: 1.9; }
-
-.dias span strong {
-    color: #FFF;
-    padding: 0 7px 2px;
-    font-size: 1.1em; }
-
-.dias span.diasDisponibles strong {
-    background: #bc7aa8; }
-
-.dias span.diasAprobados strong {
-    background: #397d2e; }
-
-.dias span.diasPendientes strong {
-    background: #fdae05; }
-
-img.calendar {
-    position: relative;
-    left: -27px; }
-
-@media (max-width: 767px) {
-    img.calendar {
-	position: inherit;
-	float: right;
-	margin: -30px 5px 0 0; } }
 /********************** HOME **********************/
 /* Error */
 .errorInfo {
@@ -886,24 +748,24 @@ img.calendar {
 	font-size: 20px;
 	margin-top: -10px; } }
 /* Accesos para gestionar */
-.gestionHoy h3 {
+.files h3 {
     color: #0F5B30;
     font-size: 19px;
     font-weight: bold;
     margin-bottom: 13px;
     margin-top: 0px; }
 
-.gestionHoy h3 span {
+.files h3 span {
     color: #000;
     font-weight: normal; }
 
 @media (max-width: 500px) {
-    .gestionHoy h3 {
+    .files h3 {
 	text-align: center; }
 
-    .gestionHoy h3 span {
+    .files h3 span {
 	display: block; } }
-.gestionHoy ul {
+.files ul {
     margin: 0px auto;
     padding: 0;
     list-style-type: none;
@@ -916,7 +778,7 @@ img.calendar {
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap; }
 
-.gestionHoy ul li {
+.files ul li {
     background-color: #afafaf;
     color: #FFF;
     text-align: center;
@@ -928,34 +790,34 @@ img.calendar {
     border-right: 2px solid #FFF; }
 
 @media (max-width: 991px) {
-    .gestionHoy ul li {
+    .files ul li {
 	width: 25%; } }
 @media (max-width: 500px) {
-    .gestionHoy ul li {
+    .files ul li {
 	width: 50%; } }
 @media (max-width: 340px) {
-    .gestionHoy ul li {
+    .files ul li {
 	width: 100%;
 	border: 0; } }
-.gestionHoy ul li:hover {
+.files ul li:hover {
     background-color: #0F5B30;
     transition: all 0.2s ease-in 0s;
     -moz-transition: all 0.2s ease-in 0s;
     -webkit-transition: all 0.2s ease-in 0s;
     -o-transition: all 0.2s ease-in 0s; }
 
-.gestionHoy ul li a {
+.files ul li a {
     color: #FFF;
     display: block;
     padding: 14px 10px;
     line-height: 1;
     height: 100%; }
 
-.gestionHoy ul li a:hover {
+.files ul li a:hover {
     color: #FFF;
     text-decoration: none; }
 
-.gestionHoy ul li i.fa {
+.files ul li i.fa {
     display: block;
     font-size: 3em;
     margin-bottom: 10px; }
@@ -976,13 +838,13 @@ img.calendar {
 	color: white;
 }
 
-.calendar .verCalendario {
+.calendar .seeCalendar {
     margin: 0 0 10px 5px;
     padding: 0 10px;
     float: right;
     font-size: 0.9em; }
 
-.calendar .verCalendario i.fa {
+.calendar .seeCalendar i.fa {
     font-size: 1.4em;
     vertical-align: top;
     margin-left: 3px; }
@@ -1093,27 +955,6 @@ img.calendar {
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     transform: scale(1.05); }
-
-.proyecto_futuro {
-    background: #b1b1b1;
-    font-size: 10px;
-    color: #fff;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-    bottom: 0; }
-
-.texto_previsto {
-    font-size: 36px;
-    margin: 50px auto;
-    text-align: center; }
-
-.texto_previsto span {
-    background: #b1b1b1 none repeat scroll 0 0;
-    color: #fff;
-    font-size: 36px;
-    padding: 5px 20px; }
-
 /********************************* FIN CUERPO *********************************/
 /********************************* FOOTER *********************************/
 footer#fW_footer {

@@ -9,7 +9,7 @@
 title: Spyc -- a Simple PHP YAML Class
 version: 0.5
 authors: [chris wanstrath (chris@ozmm.org), vlad andersen (vlad.andersen@gmail.com)]
-websites: [http://www.yaml.org, http://spyc.sourceforge.net]
+websites: [http://www.yaml.org, https://github.com/mustangostang/spyc/, http://spyc.sourceforge.net]
 license: [MIT License, http://www.opensource.org/licenses/mit-license.php]
 copyright: "(c) 2005-2006 Chris Wanstrath, 2006-2011 Vlad Andersen"
 tested on: [php 5.2.x]

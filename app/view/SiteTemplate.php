@@ -13,6 +13,12 @@ class SiteTemplate extends View {
 			'year' => date("Y"),
 			'group_web' => GROUP_WEB,
 			'scripts' => '',
+			'url_1' => URL_1,
+			'url_2' => URL_2,
+			'url_3' => URL_3,
+			'url_facebook' => URL_FACEBOOK,
+			'url_twitter' => URL_TWITTER,
+			'url_instagram' => URL_INSTAGRAM,
 		));
 	}
 
@@ -29,7 +35,7 @@ class SiteTemplate extends View {
 	# Métodos
 
 	public function getMenu() {
-		require_once ('core/resources/Menu.php');
+		require_once ('app/core/resources/Menu.php');
 		$menu = new Menu();
 		$this->setReplace(array(
 			'nav_ul' => $menu->write($this->page),
@@ -37,7 +43,7 @@ class SiteTemplate extends View {
 		return true;
 	}
 
-	public function add_vars_language_js($vars = array()) {
+	public function addVarsLanguageJS($vars = array()) {
 		if (count($vars) == 0) {
 			return false;
 		}
@@ -50,7 +56,7 @@ class SiteTemplate extends View {
 		return true;
 	}
 
-	public function add_scripts($files = array()) {
+	public function addScripts($files = array()) {
 		foreach ($files as $file) {
 			$this->replace['scripts'] .= "\n\t\t<script src=\"@@path_web@@js/{$file}\"></script>";
 		}
