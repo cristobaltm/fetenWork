@@ -1,7 +1,5 @@
 <?php
 
-require 'SiteTemplate.php';
-
 class ErrorView extends SiteTemplate {
 	# Atributos
 	private $message = "";

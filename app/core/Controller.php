@@ -99,10 +99,9 @@ class Controller {
 		// Carga la vista que usará el controlador
 		$this->controller->loadView($this->controller->name, $this->language);
 		
-//		// Si se produjo error 404, mostrarlo
+		// Si se produjo error 404, mostrarlo
 		if ($error) {			
-			$this->controller->view->setMessage("@@lbl_error_404@@");
-			$this->controller->view->setIcon("error_404.png");
+			$this->error404();
 		}
 	}
 
@@ -143,6 +142,7 @@ class Controller {
 		}
 
 		// Incluye el fichero y carga la vista
+		require_once PATH_VIEWS . 'SiteTemplate.php';
 		require_once $strFileView;
 		$this->view = new $view();
 
@@ -174,10 +174,11 @@ class Controller {
 			$this->url_var['action'] = DEFAULT_ACTION;
 		}
 
-		// Si no existe el método dentro del controlador,
-		// ejecuta la acción por defecto
+		// Si no existe el método dentro del controlador, muestra error 404
 		$action = $this->url_var['action'];
 		if (!method_exists($this->controller, $action)) {
+			$this->loadController("Error");
+			$this->error404();
 			$action = DEFAULT_ACTION;
 		}
 
@@ -209,6 +210,14 @@ class Controller {
 	public function redirect($controller = '', $action = '') {
 		$url = $this->view->url($controller, $action);
 		header("Location:{$url}");
+	}
+	
+	/**
+	 *  Carga en la vista el mensaje e icono de error 404
+	 */
+	private function error404() {
+		$this->controller->view->setMessage("@@lbl_error_404@@");
+		$this->controller->view->setIcon("error_404.png");
 	}
 
 }

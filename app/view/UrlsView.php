@@ -1,7 +1,5 @@
 <?php
 
-require 'SiteTemplate.php';
-
 class UrlsView extends SiteTemplate {
 	# Constructor y destructor
 

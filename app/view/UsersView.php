@@ -1,7 +1,5 @@
 <?php
 
-require 'SiteTemplate.php';
-
 class UsersView extends SiteTemplate {
 	# Constructor y destructor
 

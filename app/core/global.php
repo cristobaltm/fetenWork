@@ -24,6 +24,7 @@ define("ENVIRONMENT", $environment);
 // Define la ruta del sitio, en función del entorno
 if (ENVIRONMENT === 'dev') {
 	define("PATH_SITE", PATH_SITE_DEV);
+	
 } else {
 	define("PATH_SITE", PATH_SITE_PROD);
 }
@@ -44,6 +45,9 @@ define("PATH_VIEWS", "app/view/");
 
 # Ruta de los controladores
 define("PATH_CONTROLLERS", "app/controller/");
+
+# Ruta de los controladores
+define("PATH_RESOURCES","app/core/resources/");
 
 # Ruta de los archivos web
 define("PATH_WEB", "web/");

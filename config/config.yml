@@ -51,6 +51,9 @@ URL_1: web/css/main.css
 URL_2: broken_link
 URL_3: _documentation/color_palette.html
 
+# Ruta del sitio en desarrollo
+URL_POLITY: http://localhost/mis%20frameworks/mvc-victorobs/url_polity
+
 # Página en facebook
 URL_FACEBOOK: https://www.facebook.com/
 

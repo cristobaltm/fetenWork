@@ -1,7 +1,5 @@
 <?php
 
-require 'SiteTemplate.php';
-
 class IndexView extends SiteTemplate {
 	# Constructor y destructor
 

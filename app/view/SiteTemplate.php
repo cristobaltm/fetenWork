@@ -16,6 +16,7 @@ class SiteTemplate extends View {
 			'url_1' => URL_1,
 			'url_2' => URL_2,
 			'url_3' => URL_3,
+			'url_polity' => URL_POLITY,
 			'url_facebook' => URL_FACEBOOK,
 			'url_twitter' => URL_TWITTER,
 			'url_instagram' => URL_INSTAGRAM,
@@ -35,7 +36,7 @@ class SiteTemplate extends View {
 	# Métodos
 
 	public function getMenu() {
-		require_once ('app/core/resources/Menu.php');
+		require_once (PATH_RESOURCES . 'Menu.php');
 		$menu = new Menu();
 		$this->setReplace(array(
 			'nav_ul' => $menu->write($this->page),
