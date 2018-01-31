@@ -8,11 +8,12 @@ team_name: microFrameWork PHP + POO + MVC
 
 menu: Menú
 index: Inicio
+crud_examples: Ejemplos A/B/M
 users: Usuarios
 urls: Enlaces
 others_webs: Recursos
 github: Github
-color_palette: Paleta de colores en Paletton.com
+color_palette: Paleta de colores
 fontawesome: Iconos en fontawesome.io
 mvc_site: Ejemplo PHP + POO + MVC
 

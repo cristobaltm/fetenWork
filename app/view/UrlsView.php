@@ -6,8 +6,6 @@ class UrlsView extends SiteTemplate {
 	public function __construct() {
 		parent::__construct();
 
-		parent::setHtml_template("index");
-
 		parent::addVarsLanguageJS(array('confirm_delete'));
 		parent::addScripts(array("urls.js"));
 

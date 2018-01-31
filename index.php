@@ -4,13 +4,13 @@
 require_once 'app/core/global.php';
 
 // Base para los controladores
-require_once 'app/core/Controller.php';
+require_once 'app/core/Application.php';
 
 // Recuperamos las variables pasadas por la URL
 $url_var = explode('/', filter_input(INPUT_GET, GET_CONTROLLER));
 
 // Cargamos controladores y acciones
-$controller = new Controller();
-$controller->setUrl_var($url_var);
-$controller->load();
-$controller->execute();
+$application = new Application();
+$application->setUrl_var($url_var);
+$application->load();
+$application->execute();

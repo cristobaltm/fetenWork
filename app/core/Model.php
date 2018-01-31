@@ -40,7 +40,7 @@ class Model extends DBConnection {
 			}
 			return $resultSet;
 
-			// Si la consulta devuelve un resultado devuelve el registro
+		// Si la consulta devuelve un resultado devuelve el registro
 		} elseif ($query_result->num_rows == 1) {
 			$row = $query_result->fetch_object();
 			if ($row !== false) {

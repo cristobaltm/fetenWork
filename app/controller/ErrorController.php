@@ -8,8 +8,7 @@ class ErrorController extends Controller {
 	}
 
 	public function main() {
-		$this->view->setPage($this->name);
-		$this->view->getMenu();
+		$this->view->getMenu($this->name);
 		$this->view->errorSetReplace();
 		$this->view();
 	}

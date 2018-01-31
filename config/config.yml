@@ -28,10 +28,22 @@ DEFAULT_CONTROLLER: index
 DEFAULT_ACTION: main
 
 # Plantilla por defecto
-DEFAULT_TEMPLATE: index
+DEFAULT_TEMPLATE: template
 
 # Entorno por defecto
 DEFAULT_ENVIRONMENT: dev
+
+################################
+## PATRONES DE LAS PLANTILLAS ##
+################################
+
+# EJEMPLO DE PLATRÓN: @@title@@
+
+# Inicio de la cadena patrón
+PATTERN_BEGIN: @@
+
+# Final de la cadena patrón
+PATTERN_END: @@
 
 ###########
 ## RUTAS ##

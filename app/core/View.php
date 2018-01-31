@@ -7,6 +7,8 @@ class View {
 	protected $html_template = "";
 	protected $replace = array();
 	protected $library = array();
+	private $html_path = '';
+	private $html_ext = '';
 
 	# Constructor y destructor
 
@@ -18,6 +20,8 @@ class View {
 			'framework_name' => FRAMEWORK_NAME,
 			'author_name' => AUTHOR_NAME,
 		);
+		$this->html_path = PATH_WEB . 'html/';
+		$this->html_ext = '.html';
 	}
 
 	function __destruct() {
@@ -79,6 +83,19 @@ class View {
 	}
 
 	/**
+	 * Recorre el array de reemplazo para formatear los patrones
+	 * @param array $array Array que se quiere formatear
+	 * @return array Array formateado
+	 */
+	private function prepareReplace($array) {
+		$replace = array();
+		foreach ($array as $pattern => $value) {
+			$replace["/". PATTERN_BEGIN . $pattern . PATTERN_END . "/"] = (string) $value;
+		}
+		return $replace;
+	}
+
+	/**
 	 * Carga la plantilla y reemplaza las cadenas de patrones por sus valores
 	 * @return string/boolean HTML con la plantilla renderizada, o false si no existe
 	 */
@@ -88,11 +105,8 @@ class View {
 			return false;
 		}
 
-		// Recorre el array de reemplazo para formatear los patrones
-		$replace = array();
-		foreach ($this->replace as $pattern => $value) {
-			$replace["/@@{$pattern}@@/"] = (string) $value;
-		}
+		// Formatea el array de reemplazo
+		$replace = $this->prepareReplace($this->replace);
 
 		// Sustituye las cadenas de reemplazo dentro de la plantilla
 		$html = preg_replace(
@@ -113,7 +127,7 @@ class View {
 		// Recorre el array del idioma para formatear los patrones
 		$replace = array();
 		foreach ($this->library as $label => $value) {
-			$replace["/@@lbl_{$label}@@/"] = $value;
+			$replace["/". PATTERN_BEGIN . "lbl_" . $label . PATTERN_END . "/"] = $value;
 		}
 
 		// Sustituye las cadenas de reemplazo dentro de la plantilla
@@ -136,9 +150,34 @@ class View {
 		return $html;
 	}
 
+	/**
+	 * Carga un archivo HTML y reemplaza las cadenas de patrones por sus valores
+	 * @param string $html_file 
+	 * @param array $replace
+	 * @return string
+	 */
+	public function writeHTML($html_file, $replace) {
+		// Definir el archivo con su ruta, y comprobar si existe
+		$file = $this->html_path . $html_file . $this->html_ext;
+		if (!file_exists($file)) {
+			return null;
+		}
+
+		$replace_formatted = $this->prepareReplace($replace);
+
+		$html = preg_replace(
+			array_keys($replace_formatted), array_values($replace_formatted), file_get_contents($file)
+		);
+		return $html;
+	}
+
+	/**
+	 * Transforma el YAML con el idioma a un array
+	 * @return boolean
+	 */
 	private function yaml_to_array() {
-		require_once('vendor/spyc/spyc.php');
-		$filename = "config/lan/{$this->language}.yml";
+		require_once(PATH_VENDOR . 'spyc/spyc.php');
+		$filename = PATH_CONFIG . "lan/{$this->language}.yml";
 
 		if (!is_file($filename)) {
 			return false;
@@ -151,6 +190,11 @@ class View {
 		return true;
 	}
 
+	/**
+	 * Reemplaza los carácteres especiales por su equivalente en javascript
+	 * @param string $string Cadena a modificar
+	 * @return string Cadena modificada
+	 */
 	public function special_chars_javascript($string) {
 		$replace = array(
 			"/á/" => "\u00e1",

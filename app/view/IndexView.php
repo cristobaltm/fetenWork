@@ -5,8 +5,6 @@ class IndexView extends SiteTemplate {
 
 	public function __construct() {
 		parent::__construct();
-
-		parent::setHtml_template("index");
 	}
 
 	function __destruct() {

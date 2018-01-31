@@ -17,8 +17,7 @@ class UsersController extends Controller {
 	}
 
 	public function main() {
-		$this->view->setPage($this->name);
-		$this->view->getMenu();
+		$this->view->getMenu($this->name);
 		$this->view(array(
 			'content' => $this->getContent('users'),
 			'form_action' => $this->view->url("users", "insert"),
@@ -26,13 +25,10 @@ class UsersController extends Controller {
 	}
 
 	private function getContent($html) {
-		require_once ('app/core/resources/Template.php');
-		$template = new Template();
-
 		$replace = array(
 			'users_table' => $this->showList()
 		);
-		return $template->get_html($html, $replace);
+		return $this->view->writeHTML($html, $replace);
 	}
 
 	public function insert() {

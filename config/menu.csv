@@ -1,9 +1,10 @@
 level;label;url;type;target;privacy
 1;index;index;internal;_self;public
-1;users;users;internal;_self;public
-1;urls;urls;internal;_self;public
+1;crud_examples;;submenu;;
+2;users;users;internal;_self;public
+2;urls;urls;internal;_self;public
 1;others_webs;;submenu;;
 2;github;https://github.com/cristobaltm/mvc;external;_blank;public
-2;color_palette;http://paletton.com/#uid=72Z0u0kllllaFw0g0qFqFg0w0aF;_blank;public
-2;fontawesome;http://fontawesome.io/icons/;_blank;public
+2;color_palette;http://paletton.com/#uid=72Z0u0kllllaFw0g0qFqFg0w0aF;external;_blank;public
+2;fontawesome;http://fontawesome.io/icons/;external;_blank;public
 2;mvc_site;https://victorroblesweb.es/2014/07/15/ejemplo-php-poo-mvc/;external;_blank;public

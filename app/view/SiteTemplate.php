@@ -8,6 +8,7 @@ class SiteTemplate extends View {
 
 	public function __construct() {
 		parent::__construct();
+		parent::setHtml_template();
 
 		parent::setReplace(array(
 			'year' => date("Y"),
@@ -35,7 +36,10 @@ class SiteTemplate extends View {
 
 	# Métodos
 
-	public function getMenu() {
+	public function getMenu($page = '') {
+		if(!empty($page)) {
+			$this->setPage($page);
+		}
 		require_once (PATH_RESOURCES . 'Menu.php');
 		$menu = new Menu();
 		$this->setReplace(array(

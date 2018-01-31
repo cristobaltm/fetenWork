@@ -10,8 +10,7 @@ class IndexController extends Controller {
 	}
 
 	public function main() {
-		$this->view->setPage($this->name);
-		$this->view->getMenu();
+		$this->view->getMenu($this->name);
 		$this->view(array(
 			'content' => $this->getContent(),
 		));
@@ -26,9 +25,6 @@ class IndexController extends Controller {
 	}
 
 	private function getContent() {
-		require_once ('app/core/resources/Template.php');
-		$template = new Template();
-
 		$replace = array(
 			'random_1' => $this->getRandom(),
 			'random_2' => $this->getRandom(false),
@@ -36,8 +32,8 @@ class IndexController extends Controller {
 			'random_4' => $this->getRandom(false),
 			'random_5' => $this->getRandom(),
 			'random_6' => $this->getRandom(false),
-		);
-		return $template->get_html('example', $replace);
+		);		
+		return $this->view->writeHTML('example', $replace);
 	}
 
 }

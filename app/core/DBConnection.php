@@ -11,7 +11,7 @@ class DBConnection {
 		$this->table = (string) $table;
 		$this->id_name = (string) $id_name;
 
-		$db_cfg = require_once 'config/database.php';
+		$db_cfg = require_once PATH_CONFIG . 'database.php';
 		$this->driver = $db_cfg["driver"];
 		$this->host = $db_cfg["host"];
 		$this->user = $db_cfg["user"];
@@ -84,9 +84,5 @@ class DBConnection {
 		$query = $this->db->query($sql);
 		return $query;
 	}
-
-	/*
-	 * Aquí podemos montarnos un montón de métodos que nos ayuden
-	 * a hacer operaciones con la base de datos de la entidad
-	 */
+	
 }

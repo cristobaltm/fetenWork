@@ -15,8 +15,7 @@ class UrlsController extends Controller {
 	}
 
 	public function main() {
-		$this->view->setPage($this->name);
-		$this->view->getMenu();
+		$this->view->getMenu($this->name);
 		$this->view(array(
 			'content' => $this->getContent('urls'),
 			'form_action' => $this->view->url("urls", "insert"),
@@ -24,13 +23,10 @@ class UrlsController extends Controller {
 	}
 
 	private function getContent($html) {
-		require_once ('app/core/resources/Template.php');
-		$template = new Template();
-
 		$replace = array(
 			'urls_table' => $this->showList()
 		);
-		return $template->get_html($html, $replace);
+		return $this->view->writeHTML($html, $replace);
 	}
 
 	public function edit() {
@@ -44,8 +40,7 @@ class UrlsController extends Controller {
 			return false;
 		}
 
-		$this->view->setPage($this->name);
-		$this->view->getMenu();
+		$this->view->getMenu($this->name);
 		$this->view(array(
 			'content' => $this->getContent('url_edit'),
 			'form_action' => $this->view->url("urls", "update"),
