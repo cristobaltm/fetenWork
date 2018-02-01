@@ -24,7 +24,7 @@ class Menu {
 	 * @param string $active Página activa, para que se muestre destacada
 	 * @return string HTML con el menú en forma de listado
 	 */
-	public function write($active = "") {
+	public function writeMenu($active = "") {
 		if ($this->method === "csv") {
 			$this->csv_to_menu();
 		}

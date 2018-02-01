@@ -89,15 +89,17 @@ class View {
 	 */
 	private function prepareReplace($array) {
 		$replace = array();
-		foreach ($array as $pattern => $value) {
-			$replace["/". PATTERN_BEGIN . $pattern . PATTERN_END . "/"] = (string) $value;
+		foreach ($array as $label => $value) {
+			$pattern = "/". PATTERN_BEGIN . $label . PATTERN_END . "/";
+			$replace[$pattern] = (string) $value;
 		}
 		return $replace;
 	}
 
 	/**
 	 * Carga la plantilla y reemplaza las cadenas de patrones por sus valores
-	 * @return string/boolean HTML con la plantilla renderizada, o false si no existe
+	 * @return string/boolean HTML con la plantilla renderizada,
+	 *  o false si no existe
 	 */
 	private function render() {
 		// Si no existe el fichero con la plantilla devuelve false
@@ -109,9 +111,8 @@ class View {
 		$replace = $this->prepareReplace($this->replace);
 
 		// Sustituye las cadenas de reemplazo dentro de la plantilla
-		$html = preg_replace(
-				array_keys($replace), array_values($replace), file_get_contents($this->html_template)
-		);
+		$content = file_get_contents($this->html_template);
+		$html = $this->replace($replace, $content);
 
 		return $this->render_language($html);
 	}
@@ -127,11 +128,12 @@ class View {
 		// Recorre el array del idioma para formatear los patrones
 		$replace = array();
 		foreach ($this->library as $label => $value) {
-			$replace["/". PATTERN_BEGIN . "lbl_" . $label . PATTERN_END . "/"] = $value;
+			$pattern = "/". PATTERN_BEGIN . "lbl_" . $label . PATTERN_END . "/";
+			$replace[$pattern] = $value;
 		}
 
-		// Sustituye las cadenas de reemplazo dentro de la plantilla
-		return preg_replace(array_keys($replace), array_values($replace), $html);
+		// Devuelve la cadenas de reemplazo dentro de la plantilla
+		return $this->replace($replace, $html);
 	}
 
 	/**
@@ -156,19 +158,36 @@ class View {
 	 * @param array $replace
 	 * @return string
 	 */
-	public function writeHTML($html_file, $replace) {
+	public function writeHTML($html_file, $replace = array()) {
 		// Definir el archivo con su ruta, y comprobar si existe
 		$file = $this->html_path . $html_file . $this->html_ext;
 		if (!file_exists($file)) {
 			return null;
 		}
 
+		// Carga el contenido del archivo en un string
+		$html = file_get_contents($file);
+		
+		// Si no hay cadenas de reemplazo, devolver el HTML
+		if(count($replace) == 0) {
+			return $html;
+		}
+		
+		// Preparar las cadenas de reemplazo y devolver el HTML renderizado
 		$replace_formatted = $this->prepareReplace($replace);
-
-		$html = preg_replace(
-			array_keys($replace_formatted), array_values($replace_formatted), file_get_contents($file)
-		);
-		return $html;
+		return $this->replace($replace_formatted, $html);
+	}
+	
+	/**
+	 * A partir de una array de patrones, devuelve una cadena reemplazada
+	 * @param array $replace Array con las claves y valores a sustituir
+	 * @param string $string Cadena a reemplazar
+	 * @return string Cadena con el reemplazo realizado
+	 */
+	public function replace($replace, $string) {
+		$replace_keys = array_keys($replace);
+		$replace_values = array_values($replace);
+		return preg_replace($replace_keys, $replace_values, $string);		
 	}
 
 	/**

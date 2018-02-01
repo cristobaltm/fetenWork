@@ -11,6 +11,15 @@ AUTHOR_NAME: ©ristóbal Torres Montero
 # Web del grupo
 GROUP_WEB: https://github.com/cristobaltm
 
+# Nombre del framework
+FRAMEWORK_NAME: fetenWork 1.0
+
+# Ruta del sitio en producción
+PATH_SITE_PROD: http://localhost/mis%20frameworks/mvc-victorobs/
+
+# Ruta del sitio en desarrollo
+PATH_SITE_DEV: http://localhost/mis%20frameworks/mvc-victorobs/
+
 # Lenguajes permitidos. Separados por comas, sin espacios
 ALLOWED_LANGUAGES: es,en
 
@@ -33,11 +42,14 @@ DEFAULT_TEMPLATE: template
 # Entorno por defecto
 DEFAULT_ENVIRONMENT: dev
 
+# Nombre del controlador de errores por defecto
+DEFAULT_ERROR_NAME: error
+
 ################################
 ## PATRONES DE LAS PLANTILLAS ##
 ################################
 
-# EJEMPLO DE PLATRÓN: @@title@@
+# EJEMPLO DE PATRÓN: @@title@@
 
 # Inicio de la cadena patrón
 PATTERN_BEGIN: @@
@@ -45,26 +57,12 @@ PATTERN_BEGIN: @@
 # Final de la cadena patrón
 PATTERN_END: @@
 
-###########
-## RUTAS ##
-###########
-
-# Ruta del sitio en producción
-PATH_SITE_PROD: http://localhost/mis%20frameworks/mvc-victorobs/
-
-# Ruta del sitio en desarrollo
-PATH_SITE_DEV: http://localhost/mis%20frameworks/mvc-victorobs/
-
 #########################
 ## ENLACES DEL EJEMPLO ##
 #########################
 
-URL_1: web/css/main.css
-URL_2: broken_link
-URL_3: _documentation/color_palette.html
-
-# Ruta del sitio en desarrollo
-URL_POLITY: http://localhost/mis%20frameworks/mvc-victorobs/url_polity
+# Ruta de la página de política de privacidad
+URL_POLITIC: politic
 
 # Página en facebook
 URL_FACEBOOK: https://www.facebook.com/
@@ -73,4 +71,8 @@ URL_FACEBOOK: https://www.facebook.com/
 URL_TWITTER: https://www.twitter.com/
 
 # Página en instagram
-URL_INSTAGRAM: https://www.instagram.com/
+URL_INSTAGRAM: https://www.inst
+
+URL_1: web/css/main.css
+URL_2: broken_link
+URL_3: _documentation/color_palette.htmlagram.com/

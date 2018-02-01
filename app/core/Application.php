@@ -26,6 +26,12 @@ class Application {
 		// Incluir la vista Base
 		require_once 'View.php';
 
+		// Controlador y acción por defecto
+		$this->url_var = array(
+			'controller' => DEFAULT_CONTROLLER,
+			'action' => DEFAULT_ACTION
+		);
+		
 		// Idioma por defecto
 		$this->language = DEFAULT_LANG;
 
@@ -60,17 +66,17 @@ class Application {
 				$this->url_var['lan'] = $var;
 				$first_num++;
 
-			// Si en primera posición no hay idioma, toma el de por defecto
+				// Si en primera posición no hay idioma, toma el de por defecto
 			} else if ($num == 0) {
 				$this->url_var['lan'] = DEFAULT_LANG;
 			}
 
 			// Si es la primera posición, es el controlador
-			if ($num == $first_num) {
+			if ($num == $first_num && !empty($var)) {
 				$this->url_var['controller'] = $var;
 
 				// Si es la segunda posición, es la acción
-			} else if ($num == $first_num + 1) {
+			} else if ($num == $first_num + 1 && !empty($var)) {
 				$this->url_var['action'] = $var;
 
 				// Si es una posición posterior a la segunda, es una variable GET
@@ -86,7 +92,12 @@ class Application {
 	 * Carga el controlador, y si no existe carga el de por defecto
 	 * @param string $name Nombre del controlador
 	 */
-	private function loadController($name) {
+	public function load($name = "") {
+		// Si no existe la variable con el controlador, toma el de por defecto
+		if (empty($name)) {
+			$name = $this->url_var['controller'];
+		}
+
 		// Define el controlador y la ruta del fichero
 		$controller = ucwords($name) . 'Controller';
 		$strFileController = PATH_CONTROLLERS . $controller . ".php";
@@ -94,7 +105,7 @@ class Application {
 		// Si no existe el fichero, carga el controlador de errores
 		$error = false;
 		if (!is_file($strFileController)) {
-			$controller = 'ErrorController';
+			$controller = ucwords(DEFAULT_ERROR_NAME) . 'Controller';
 			$strFileController = PATH_CONTROLLERS . $controller . ".php";
 			$error = true;
 		}
@@ -116,17 +127,6 @@ class Application {
 	}
 
 	/**
-	 * Carga el controlador llamando al método loadController
-	 * @param string $name Nombre del controlador
-	 */
-	public function load() {
-		if (empty($this->url_var['controller'])) {
-			$this->url_var['controller'] = DEFAULT_CONTROLLER;
-		}
-		$this->loadController($this->url_var['controller']);
-	}
-
-	/**
 	 * Ejecuta la acción correspondiente del controlador
 	 * @param string $action Nombre de la acción
 	 * @return bool resultado de la acción
@@ -136,8 +136,9 @@ class Application {
 			$this->url_var['action'] = DEFAULT_ACTION;
 		}
 
-		// Si no existe el método dentro del controlador, muestra error 404
 		$action = $this->url_var['action'];
+
+		// Si no existe el método dentro del controlador, muestra error 404
 		if (!method_exists($this->controller, $action)) {
 			$this->error404();
 			$action = DEFAULT_ACTION;
@@ -151,7 +152,7 @@ class Application {
 	 *  Carga en la vista el mensaje e icono de error 404
 	 */
 	private function error404() {
-		$this->loadController("Error");
+		$this->load(DEFAULT_ERROR_NAME);
 		$this->controller->setError("@@lbl_error_404@@", "error_404.png");
 	}
 

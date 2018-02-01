@@ -7,4 +7,5 @@ level;label;url;type;target;privacy
 2;github;https://github.com/cristobaltm/mvc;external;_blank;public
 2;color_palette;http://paletton.com/#uid=72Z0u0kllllaFw0g0qFqFg0w0aF;external;_blank;public
 2;fontawesome;http://fontawesome.io/icons/;external;_blank;public
+2;glyphicons;https://getbootstrap.com/docs/3.3/components/;external;_blank;public
 2;mvc_site;https://victorroblesweb.es/2014/07/15/ejemplo-php-poo-mvc/;external;_blank;public

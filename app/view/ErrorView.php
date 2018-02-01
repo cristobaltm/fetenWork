@@ -9,7 +9,7 @@ class ErrorView extends SiteTemplate {
 
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->message = "@@lbl_error_default@@";
 		$this->icon = "@@path_web@@img/error.png";
 	}

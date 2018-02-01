@@ -14,10 +14,10 @@ class SiteTemplate extends View {
 			'year' => date("Y"),
 			'group_web' => GROUP_WEB,
 			'scripts' => '',
-			'url_1' => URL_1,
-			'url_2' => URL_2,
-			'url_3' => URL_3,
-			'url_polity' => URL_POLITY,
+			'url_1' => PATH_SITE . URL_1,
+			'url_2' => PATH_SITE . URL_2,
+			'url_3' => PATH_SITE . URL_3,
+			'url_politic' => PATH_SITE . URL_POLITIC,
 			'url_facebook' => URL_FACEBOOK,
 			'url_twitter' => URL_TWITTER,
 			'url_instagram' => URL_INSTAGRAM,
@@ -43,7 +43,7 @@ class SiteTemplate extends View {
 		require_once (PATH_RESOURCES . 'Menu.php');
 		$menu = new Menu();
 		$this->setReplace(array(
-			'nav_ul' => $menu->write($this->page),
+			'nav_ul' => $menu->writeMenu($this->page),
 		));
 		return true;
 	}

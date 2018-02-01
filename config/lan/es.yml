@@ -15,6 +15,7 @@ others_webs: Recursos
 github: Github
 color_palette: Paleta de colores
 fontawesome: Iconos en fontawesome.io
+glyphicons: Iconos en Glyphicons
 mvc_site: Ejemplo PHP + POO + MVC
 
 # Mensajes de confirmación
@@ -53,6 +54,7 @@ edit_link: Editar enlace
 
 cookie_polity: Esta web utiliza cookies para ofrecer una mejor experiencia de usuario. Si continúas navegando consideramos que aceptas su uso.
 more_information: Más información
+privacy_politic: Política de privacidad
 
 # Ejemplo portada
 

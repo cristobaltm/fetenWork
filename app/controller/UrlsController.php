@@ -15,8 +15,7 @@ class UrlsController extends Controller {
 	}
 
 	public function main() {
-		$this->view->getMenu($this->name);
-		$this->view(array(
+		$this->writeView($this->name, array(
 			'content' => $this->getContent('urls'),
 			'form_action' => $this->view->url("urls", "insert"),
 		));
@@ -40,8 +39,7 @@ class UrlsController extends Controller {
 			return false;
 		}
 
-		$this->view->getMenu($this->name);
-		$this->view(array(
+		$this->writeView($this->name, array(
 			'content' => $this->getContent('url_edit'),
 			'form_action' => $this->view->url("urls", "update"),
 			'id_val' => $data->id_url,

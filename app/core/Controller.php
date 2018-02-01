@@ -1,19 +1,20 @@
 <?php
 
+/**
+ *  Controlador base
+ */
 class Controller {
 	# Atributos
 
+	protected $name = null;
 	public $view = null;
 	public $model = null;
 	protected $url_var = array();
-//	protected $language = '';
-//	private $allowed_languages = array();
+	protected $language = '';
+	private $allowed_languages = array();
 
 	# Constructor y destructor
 
-	/**
-	 *  Controlador base
-	 */
 	public function __construct() {
 
 		// Idioma por defecto
@@ -29,22 +30,10 @@ class Controller {
 
 	# Setters
 
-//	function setController($controller) {
-//		$this->controller = $controller;
-//	}
-//
-//	function setView($view) {
-//		$this->view = $view;
-//	}
-//
-//	function setModel($model) {
-//		$this->model = $model;
-//	}
-//
-//	function setLanguage($language) {
-//		$this->language = $language;
-//	}
-//
+	function setLanguage($language) {
+		$this->language = $language;
+	}
+
 	function setUrl_var($url_var) {
 		$this->url_var = $url_var;
 	}
@@ -101,18 +90,38 @@ class Controller {
 
 	/**
 	 * Recibe datos a reemplazar en forma de array y muestra la vista
-	 * @param array $data Datos del controlador en array
+	 * @param string $name Nombre de la sección a cargar
+	 * @param array $data Datos que reemplazar en el texto
+	 * @param boolean $write true: escribe el código / false: devuelve el código
+	 * @return boolean/string Devuelve true si muestra el código,
+	 *  false si no existe la vista, o el código si el parámetro $write es false
 	 */
-	public function view($data = array(), $write = true) {
-		if (!empty($this->view)) {
-			$this->view->setReplace($data);
-			if ($write === false) {
-				$html = $this->view->write($write);
-				return $html;
-			}
-			$this->view->write();
-			return true;
+	public function writeView($name = "", $data = array(), $write = true) {
+		// Si la vista no está cargada devuelve false
+		if (empty($this->view)) {
+			return false;
 		}
+
+		// Si el nombre está vacío, se toma el del controlador
+		if (empty($name)) {
+			$name = $this->name;
+		}
+
+		// Escribe el menú, pasando el nombre para que quede marcado
+		$this->view->getMenu($name);
+
+		// Se pasa a la vista el array con los datos a reemplazar en el texto
+		$this->view->setReplace($data);
+
+		// Si no se debe escribir la vista, la devuelve en un string
+		if ($write === false) {
+			$html = (string) $this->view->write($write);
+			return $html;
+		}
+
+		// Escribir la vista y devolver true
+		$this->view->write();
+		return true;
 	}
 
 	/**
@@ -131,11 +140,12 @@ class Controller {
 	 * @param string $icon Icono del error
 	 */
 	public function setError($message = "", $icon = "") {
-		if($this->name == "error") {			
+		if ($this->name == "error") {
 			$this->view->setMessage($message);
-			if(!empty($icon)) {
+			if (!empty($icon)) {
 				$this->view->setIcon($icon);
 			}
 		}
 	}
+
 }

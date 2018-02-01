@@ -29,10 +29,6 @@ define("PATH_WEB", "web/");
 # Ruta de las librerías externas
 define("PATH_VENDOR", "vendor/");
 
-# Ruta de los archivos web
-define("FRAMEWORK_NAME", "fetenWork");
-
-
 // Transforma los datos recogidos en el archivo 'config.yml' en constantes
 
 require_once(PATH_VENDOR . 'spyc/spyc.php');

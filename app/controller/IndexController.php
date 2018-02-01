@@ -10,8 +10,7 @@ class IndexController extends Controller {
 	}
 
 	public function main() {
-		$this->view->getMenu($this->name);
-		$this->view(array(
+		$this->writeView($this->name, array(
 			'content' => $this->getContent(),
 		));
 	}
