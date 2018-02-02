@@ -30,6 +30,10 @@ class Controller {
 
 	# Setters
 
+	function setName($name) {
+		$this->name = $name;
+	}
+
 	function setLanguage($language) {
 		$this->language = $language;
 	}
@@ -138,14 +142,46 @@ class Controller {
 	 * Carga en el controlador Error el mensaje y el icono
 	 * @param string $message Mensaje de error
 	 * @param string $icon Icono del error
+	 * @param string $return Mostrar botón de retorno o no
 	 */
-	public function setError($message = "", $icon = "") {
-		if ($this->name == "error") {
+	public function setError($message = "", $icon = "", $return = false) {
+		// Sólo si el controlador es el definido para errores
+		if ($this->name == DEFAULT_ERROR_NAME) {
+
+			// Si el mensaje existe, pasarlo a la vista
+			if (!empty($message)) {
 			$this->view->setMessage($message);
+			}
+
+			// Si el icono existe, pasarlo a la vista
 			if (!empty($icon)) {
 				$this->view->setIcon($icon);
 			}
+
+			// Pasar la opción de mostrar botón de retorno
+			$this->view->setReturn($return);
 		}
+	}
+
+	/**
+	 * Carga el controlador de errores, y muestra el mensaje e icono
+	 * @param string $message Mensaje de error
+	 * @param string $icon Icono de error
+	 * @param string $name Nombre de la página
+	 * @param string $return Mostrar botón de retorno o no
+	 */
+	public function error($message = "", $icon = "", $name = "", $return = false) {
+		$controller = ucwords(DEFAULT_ERROR_NAME) . 'Controller';
+		$strFileController = PATH_CONTROLLERS . $controller . ".php";
+		$action = DEFAULT_ACTION;
+
+		require_once $strFileController;
+		$errorController = new $controller();
+		$errorController->setUrl_var($this->url_var);
+		$errorController->loadView(DEFAULT_ERROR_NAME, $this->language);
+		$errorController->setError($message, $icon, $return);
+		$errorController->setName($name);
+		$errorController->$action();
 	}
 
 }

@@ -26,6 +26,7 @@ confirm_delete: ¿Deseas eliminar este registro?
 
 error_default: Ocurrió un error inesperado
 error_404: La página que solicita no existe
+back: Volver
 
 # Acciones
 

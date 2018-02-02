@@ -83,7 +83,7 @@ class Csv_to_array {
 			return true;
 		}
 
-		return $this->initialize_with_head_first($array_map);
+		return $this->initialize_with_head_first($array_map, $rename_num_field);
     }
 
 	/**

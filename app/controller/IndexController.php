@@ -35,4 +35,7 @@ class IndexController extends Controller {
 		return $this->view->writeHTML('example', $replace);
 	}
 
+	public function error_back() {
+		$this->error("HAS COMETIDO UN ERROR", "", $this->name, true);
+	}
 }
