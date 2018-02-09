@@ -37,7 +37,7 @@ class ErrorView extends SiteTemplate {
 		$this->return = $return;
 	}
 		
-	# Métodos
+	# Mï¿½todos
 	public function errorSetReplace() {
 
 		parent::setReplace(array(
@@ -46,7 +46,7 @@ class ErrorView extends SiteTemplate {
 	}
 		
 	private function content() {
-		// Si return es true, mostrar el botón de retorno
+		// Si return es true, mostrar el botï¿½n de retorno
 		$bt_return = "";
 		if ($this->return) {
 			$bt_return = '<div><button type="button" class="btn btn-primary btn-sm" onclick="history.back()"><span class="glyphicon glyphicon-backward"></span> @@lbl_back@@</button></div>';
@@ -54,7 +54,7 @@ class ErrorView extends SiteTemplate {
 		
 		// Devolver el mensaje de error con el icono
 		$html = <<<eot
-<section class="content">
+<section class="content header_radius">
 
     <div class="errorInfo">
 		<img class="icon" src="{$this->icon}">

@@ -506,6 +506,8 @@ ul.nav .submenu li a.active {
     color: #fff;
 	margin: 0px;
     padding: 10px 20px;
+	-webkit-border-radius: 12px 12px 0 0;
+	border-radius: 12px 12px 0 0;
 }
 
 section.content {
@@ -514,7 +516,13 @@ section.content {
     background: #fff;
     -webkit-box-shadow: 0 0 10px #999;
     -moz-box-shadow: 0 0 10px #999;
-    box-shadow: 0 0 10px #999; }
+    box-shadow: 0 0 10px #999; 
+}
+
+section.header_radius {
+	-webkit-border-radius: 12px 12px 0 0;
+	border-radius: 12px 12px 0 0;
+}
 
 section.content h2 {
     font-size: 30px;
@@ -530,7 +538,10 @@ section.content h2 {
     border-top: 75px solid #802B15;
     text-align: center;
     margin: -20px;
-    padding: 20px; }
+    padding: 20px; 
+	-webkit-border-radius: 12px 12px 0 0;
+	border-radius: 12px 12px 0 0;
+}
 
 .errorInfo img.icon {
     width: 125px;
@@ -548,11 +559,14 @@ section.content h2 {
     font-weight: normal;
     background: transparent;
     margin: 4px 0 7px 0;
-    padding: 0; }
+    padding: 0; 
+}
 
 /* Usuario */
 .userInfo {
     border-top: 75px solid #0F5B30;
+	-webkit-border-radius: 12px 12px 0 0;
+	border-radius: 12px 12px 0 0;
     text-align: center;
     margin: -20px;
     padding: 20px; }

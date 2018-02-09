@@ -52,7 +52,7 @@ class UsersController extends Controller {
 	public function delete() {
 		$id = (int) $this->url_var[1];
 		if (!empty($id)) {
-			$this->model->deleteById($id);
+			$this->model->remove($id);
 		}
 		$this->redirect("users", "main");
 	}

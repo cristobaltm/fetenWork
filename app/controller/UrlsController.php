@@ -73,8 +73,8 @@ class UrlsController extends Controller {
 		$url = filter_input(INPUT_POST, "url");
 
 		if (!empty($label)) {
-			$this->model->updateById($id, 'label', $label);
-			$this->model->updateById($id, 'url', $url);
+			$this->model->updateField($id, 'label', $label);
+			$this->model->updateField($id, 'url', $url);
 		}
 		$this->redirect("urls");
 	}
@@ -82,7 +82,7 @@ class UrlsController extends Controller {
 	public function delete() {
 		$id = (int) $this->url_var[1];
 		if (!empty($id)) {
-			$this->model->deleteById($id);
+			$this->model->remove($id);
 		}
 		$this->redirect("urls");
 	}

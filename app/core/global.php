@@ -53,6 +53,8 @@ define("ENVIRONMENT", $environment);
 // Define la ruta del sitio, en función del entorno
 if (ENVIRONMENT === 'dev') {
 	define("PATH_SITE", PATH_SITE_DEV);
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
 	
 } else {
 	define("PATH_SITE", PATH_SITE_PROD);

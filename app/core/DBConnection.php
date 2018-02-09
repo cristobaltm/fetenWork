@@ -2,8 +2,8 @@
 
 class DBConnection {
 
-	private $table;
-	private $id_name;
+	protected $table;
+	protected $id_name;
 	private $db;
 	private $driver, $host, $user, $pass, $database, $charset;
 
@@ -37,8 +37,13 @@ class DBConnection {
 
 	public function getAll() {
 		$resultSet = array();
-		$query = $this->db->query("SELECT * FROM {$this->table} ORDER BY {$this->id_name} DESC");
+		$sql = "SELECT * FROM {$this->table} WHERE removed = 0 ORDER BY {$this->id_name} DESC";
+		$query = $this->db->query($sql);
 
+		if(!$query || $this->db->affected_rows == 0) {
+			return null;
+		}
+		
 		//Devolvemos el resultset en forma de array de objetos
 		while ($row = $query->fetch_object()) {
 			$resultSet[] = $row;
@@ -48,7 +53,7 @@ class DBConnection {
 	}
 
 	public function getById($id) {
-		$query = $this->db->query("SELECT * FROM {$this->table} WHERE {$this->id_name} = {$id}");
+		$query = $this->db->query("SELECT * FROM {$this->table} WHERE {$this->id_name} = {$id} AND removed = 0");
 
 		$row = $query->fetch_object();
 		if ($row) {
@@ -60,7 +65,7 @@ class DBConnection {
 
 	public function getBy($column, $value) {
 		$resultSet = array();
-		$query = $this->db->query("SELECT * FROM {$this->table} WHERE {$column} = '{$value}'");
+		$query = $this->db->query("SELECT * FROM {$this->table} WHERE {$column} = '{$value}' AND removed = 0");
 
 		while ($row = $query->fetch_object()) {
 			$resultSet[] = $row;
@@ -69,19 +74,30 @@ class DBConnection {
 		return $resultSet;
 	}
 
-	public function deleteById($id) {
-		$query = $this->db->query("DELETE FROM {$this->table} WHERE {$this->id_name} = {$id}");
-		return $query;
+	public function insert($id = "NULL") {
+		$sql = "INSERT INTO {$this->table} ({$this->id_name}, registrationDate, removed) VALUES ({$id}, NOW(), 0);";
+		$query = $this->db->query($sql);
+		if(!$query) {
+			return false;
+		}
+		if(empty($id) || $id === "NULL") {
+			$id = $this->db->insert_id;
+		}
+		return $id;
 	}
 
-	public function deleteBy($column, $value) {
-		$query = $this->db->query("DELETE FROM {$this->table} WHERE {$column} = '{$value}'");
-		return $query;
-	}
-
-	public function updateById($id, $field, $value) {
+	public function updateField($id, $field, $value) {
 		$sql = "UPDATE {$this->table} SET {$field} = '{$value}' WHERE {$this->id_name} = {$id}";
 		$query = $this->db->query($sql);
+		return $query;
+	}
+
+	public function remove($id){
+		return $this->updateField($id, 'removed', 1);		
+	}
+
+	public function deleteById($id) {
+		$query = $this->db->query("DELETE FROM {$this->table} WHERE {$this->id_name} = {$id}");
 		return $query;
 	}
 	
