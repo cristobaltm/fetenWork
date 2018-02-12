@@ -14,8 +14,13 @@
 				@@lbl_surname@@: <input type="text" name="surname" class="form-control"/>
 				@@lbl_email@@: <input type="text" name="email" class="form-control"/>
 				@@lbl_pass@@: <input type="password" name="password" class="form-control"/>
+				@@lbl_description@@: 
+				<script src="@@path_vendor@@ckeditor/ckeditor.js"></script>
+				<textarea name="description" id="description_editor" rows="10" cols="80">					
+				</textarea>
+				<script>CKEDITOR.replace( 'description_editor' );</script>
+				
 				<input type="submit" value="@@lbl_send@@" class="btn btn-success"/>
 			</form>
 		</section>
 	</section>
-

@@ -31,6 +31,7 @@ back: Volver
 # Acciones
 
 send: Enviar
+add: Agregar
 delete: Borrar
 edit: Editar
 close: Cerrar
@@ -43,6 +44,7 @@ surname: Apellido
 email: Email
 pass: Contraseña
 add_user: Añadir usuario
+description: Descripción
 
 # Sección enlaces
 

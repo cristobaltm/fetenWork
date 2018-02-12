@@ -7,6 +7,7 @@ class UsersModel extends Model {
 	private $surname;
 	private $email;
 	private $password;
+	private $description;
 
 	public function __construct() {
 		$table = "users";
@@ -33,6 +34,10 @@ class UsersModel extends Model {
 	function getPassword() {
 		return $this->password;
 	}
+	
+	function getDescription() {
+		return $this->description;
+	}
 
 	function setId($id) {
 		$this->id = $id;
@@ -53,10 +58,14 @@ class UsersModel extends Model {
 	function setPassword($password) {
 		$this->password = $password;
 	}
+	
+	function setDescription($description) {
+		$this->description = $description;
+	}
 
 	public function save() {
-		$query = "INSERT INTO users (id,name,surname,email,password)
-VALUES(NULL, '{$this->name}', '{$this->surname}', '{$this->email}', '{$this->password}');";
+		$query = "INSERT INTO users (id,name,surname,email,password, description)
+VALUES(NULL, '{$this->name}', '{$this->surname}', '{$this->email}', '{$this->password}', '{$this->description}');";
 
 		$save = $this->db()->query($query);
 		//$this->db()->error;

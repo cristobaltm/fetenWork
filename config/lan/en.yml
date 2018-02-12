@@ -31,6 +31,7 @@ back: Back
 # Acciones
 
 send: Send
+add: Add
 delete: Delete
 edit: Edit
 close: Close
@@ -43,6 +44,7 @@ surname: Surname
 email: Email
 pass: Pass
 add_user: Add user
+description: Description
 
 # Sección enlaces
 

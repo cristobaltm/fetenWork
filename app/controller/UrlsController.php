@@ -15,9 +15,17 @@ class UrlsController extends Controller {
 	}
 
 	public function main() {
+		$for_data = $this->view->formEditData("add");
 		$this->writeView($this->name, array(
 			'content' => $this->getContent('urls'),
 			'form_action' => $this->view->url("urls", "insert"),
+			'id_val' => 0,
+			'etiqueta_val' => '',
+			'direccion_val' => '',
+			'label_header' => $for_data['label_header'],
+			'glyphicon-header' => $for_data['glyphicon-header'],
+			'input_submit' => $for_data['input_submit'],
+			'return_add' => $for_data['return_add'],
 		));
 	}
 
@@ -39,12 +47,17 @@ class UrlsController extends Controller {
 			return false;
 		}
 
+		$for_data = $this->view->formEditData("edit");
 		$this->writeView($this->name, array(
-			'content' => $this->getContent('url_edit'),
+			'content' => $this->getContent('urls'),
 			'form_action' => $this->view->url("urls", "update"),
 			'id_val' => $data->id_url,
 			'etiqueta_val' => $data->label,
 			'direccion_val' => $data->url,
+			'label_header' => $for_data['label_header'],
+			'glyphicon-header' => $for_data['glyphicon-header'],
+			'input_submit' => $for_data['input_submit'],
+			'return_add' => $for_data['return_add'],
 		));
 		return true;
 	}

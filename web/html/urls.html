@@ -7,12 +7,15 @@
 	</section>
 
 	<section class="col-lg-4">
-		<h3 class="section_header"><span class="glyphicon glyphicon-plus"></span> @@lbl_add_link@@</h3>
+		<h3 class="section_header">@@glyphicon-header@@ @@label_header@@</h3>
 		<section class="content">			
 			<form action="@@form_action@@" method="post">
-				@@lbl_label@@: <input type="text" name="label" class="form-control"/>
-				@@lbl_link@@: <input type="text" name="url" class="form-control"/>
-				<input type="submit" value="@@lbl_send@@" class="btn btn-success"/>
+				<input type="hidden" name="id" value="@@id_val@@"/>
+				@@lbl_label@@: <input type="text" name="label" value="@@etiqueta_val@@" class="form-control"/>
+				@@lbl_link@@ <input type="text" name="url" value="@@direccion_val@@" class="form-control"/>
+				@@input_submit@@
 			</form>
 		</section>
+
+@@return_add@@
 	</section>
